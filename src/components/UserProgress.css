@@ -1,0 +1,35 @@
+.result-contain {
+  max-width: 1150px;
+  margin: 1.5rem auto;
+}
+.result-final {
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 8px;
+  padding: 5px;
+
+  background: linear-gradient(0deg, #ffffff, #d9e8ffa3);
+}
+.cirle-ins {
+  position: relative;
+  margin-right: 2rem;
+}
+.circle-per {
+  position: absolute;
+  top: 44%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.heading-final {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 2.2rem 0.5rem 2.2rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+  background: linear-gradient(0deg, #b7e2ff, #a9b4ff);
+
+  color: black;
+}

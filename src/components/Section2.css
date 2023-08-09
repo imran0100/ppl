@@ -1,0 +1,101 @@
+/* Updated CSS for Section2 component */
+.section2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Equal width columns */
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  margin: 0 6rem 0 6rem;
+}
+
+.img-div {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Center the image horizontally and vertically */
+}
+
+.img-phone {
+  max-width: 40%;
+  display: block;
+  /* Center the image horizontally */
+}
+
+/* New CSS for background circle */
+.img-circle {
+  /* background: linear-gradient(
+    to bottom right,
+    #276cbe,
+    #1a237e
+  ); */
+
+  /* Set circle color to blue */
+  /* background: linear-gradient(180deg, #2234ae 0%, #191714 74%); */
+  /* background: linear-gradient(180deg, #3b52e9 33%, #0c192c 74%);
+  background: linear-gradient(180deg, #ebeef0 33%, #d9dfe9 82%); */
+  background-color: #f1f1ff;
+  border-radius: 50%; /* Make it a circle using border-radius */
+  width: 600px;
+  height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.section2-right {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 20px;
+  box-sizing: border-box;
+  justify-content: center; /* Include padding in the width calculation */
+}
+
+.section2-right p {
+  line-height: 1.8;
+  font-size: 1.2rem;
+  padding-right: 2rem;
+}
+
+.section2-heading {
+  text-align: left; /* Align heading to the left */
+}
+
+.section2 p {
+  text-align: left; /* Align paragraph to the left */
+}
+
+@media screen and (max-width: 768px) {
+  .section2 {
+    margin: 0;
+    grid-template-columns: 1fr; /* Single column layout on smaller screens */
+    height: auto;
+    gap: 2rem; /* Adjust height to fit content */
+  }
+  .inside {
+    margin-top: 6rem;
+  }
+  .img-div {
+    justify-content: center; /* Center the image on smaller screens */
+    margin-right: 0; /* Remove right margin */
+    margin-bottom: 1.5rem; /* Add bottom margin for spacing */
+  }
+
+  .img-phone {
+    max-width: 80%; /* Adjust image width for smaller screens */
+  }
+
+  /* Adjust the size of the circle for smaller screens */
+}
+@media screen and (max-width: 420px) {
+  .section2 {
+    margin: 0;
+    grid-template-columns: 1fr; /* Single column layout on smaller screens */
+    height: auto;
+    gap: 2rem; /* Adjust height to fit content */
+  }
+  .img-circle {
+    width: 320px;
+    height: 507px;
+    margin-bottom: 3rem;
+  }
+}
