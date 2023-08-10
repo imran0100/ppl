@@ -314,7 +314,7 @@ nav img:hover {
 
   .footer {
     padding: 0.5rem;
-    height: 7rem;
+    height: auto;
   }
 
   nav {
