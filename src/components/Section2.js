@@ -33,26 +33,46 @@
 // }
 
 // export default Section2;
-import React from "react";
+import React, { useState, useEffect } from "react";
 import image from "../logo/20230712_231252 (1) (1).png";
 import "./Section2.css";
 import ReactScrollAnimation from "react-scroll-animation";
 import "animate.css/animate.min.css"; // Import the animation styles
 
 function Section2() {
+  const [shouldAnimate, setShouldAnimate] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const section2Right = document.querySelector(".section2-right");
+      const section2Top = section2Right.offsetTop;
+      const windowTop = window.scrollY + window.innerHeight;
+
+      if (windowTop > section2Top) {
+        setShouldAnimate(true);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
     <div className="section2">
       <div className="inside">
-        <ReactScrollAnimation animateIn="fadeIn" animateOnce={true}>
-          <div className="img-div">
-            <div className="img-circle">
-              <img className="img-phone" src={image} alt="Smartphone" />
-            </div>
+        {/* <ReactScrollAnimation animateIn="fadeIn" animateOnce={true}> */}
+        <div className={`img-div ${shouldAnimate ? "active" : ""}`}>
+          <div className="img-circle">
+            <img className="img-phone" src={image} alt="Smartphone" />
           </div>
-        </ReactScrollAnimation>
+        </div>
+        {/* </ReactScrollAnimation> */}
       </div>
 
-      <div className="section2-right">
+      {/* <div className="section2-right"> */}
+      <div className={`section2-right ${shouldAnimate ? "active" : ""}`}>
         <h1 className="section2-heading">What Is The Difference?</h1>
         <p>
           Apart many European countries, Sweden, Bulgaria, Lithuania, Hungary,

@@ -1,12 +1,32 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./AboutDatabasePage.css";
 import { FaBook, FaSearch, FaList } from "react-icons/fa";
 
 function AboutDatabasePage() {
+  const [shouldAnimate, setShouldAnimate] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const section2Right = document.querySelector(".col-1");
+      const section2Top = section2Right.offsetTop;
+      const windowTop = window.scrollY + window.innerHeight;
+
+      if (windowTop > section2Top) {
+        setShouldAnimate(true);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
   return (
     <div>
       <section>
-        <h2>About Database</h2>
+        <h2 className={`section-heading ${shouldAnimate ? "active" : ""}`}>
+          About Database
+        </h2>
         <p>
           Our website has two versions of EASA Database. EASA 2016 and EASA
           2021, both databases consist of questions appearing on the Real Exams

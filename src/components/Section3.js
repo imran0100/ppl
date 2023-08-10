@@ -1,10 +1,28 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./Section3.css";
 
 function Section3() {
+  const [shouldAnimate, setShouldAnimate] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const section2Right = document.querySelector(".section3");
+      const section2Top = section2Right.offsetTop;
+      const windowTop = window.scrollY + window.innerHeight;
+
+      if (windowTop > section2Top) {
+        setShouldAnimate(true);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
   return (
     <section className="section3">
-      <h2>Amazing Features</h2>
+      <h2 className={`${shouldAnimate ? "active" : ""}`}>Amazing Features</h2>
       <p>We’ve got a lot of amazing and cool features.</p>
       <div className="row">
         <div className="col">

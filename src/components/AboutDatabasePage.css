@@ -15,7 +15,14 @@ section p {
 section h2 {
   font-size: 3rem;
 }
-
+.section-heading {
+  transition: opacity 0.5s ease-in-out, transform 1s ease-in-out;
+  transform: scale(0.3);
+}
+.section-heading.active {
+  opacity: 1;
+  transform: scale(1) !important;
+}
 .row {
   display: grid;
   grid-template-columns: repeat(3, 1fr);

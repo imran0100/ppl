@@ -1,9 +1,15 @@
 .book-table {
   width: 100%;
+  transform: translateY(50px);
+  transition: opacity 0.5s ease-in-out, transform 1s ease-in-out;
+  transform: scale(0.5);
   /* padding: 4rem; */
   overflow-x: auto; /* Enable horizontal scrolling on small screens */
 }
-
+.book-table.active {
+  opacity: 1;
+  transform: scale(1);
+}
 table {
   width: 100%;
   border-collapse: collapse;

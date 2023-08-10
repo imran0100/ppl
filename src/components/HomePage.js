@@ -260,6 +260,7 @@ import PricingTable2 from "./PricingTable2";
 import PricingTable from "./PricingTable";
 import Video from "./Video";
 import AAA from "./AAA";
+import ScrollAnimation from "./ScrollAnimation";
 
 function HomePage() {
   const navigate = useNavigate();
@@ -340,6 +341,7 @@ function HomePage() {
       {/* <PricingPage /> */}
       <Video />
       <Section2 />
+      {/* <ScrollAnimation /> */}
       <Section3 />
       {/* <ChooseSubject /> */}
       {/* <TestPage /> */}

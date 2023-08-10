@@ -1,9 +1,27 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./BookTable.css";
 import ReactScrollAnimation from "react-scroll-animation";
 import "animate.css/animate.min.css"; // Import the animation styles
 
 function BookTable() {
+  const [shouldAnimate, setShouldAnimate] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const section2Right = document.querySelector("tr");
+      const section2Top = section2Right.offsetTop;
+      const windowTop = window.scrollY + window.innerHeight;
+
+      if (windowTop > section2Top) {
+        setShouldAnimate(true);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
   const books = [
     {
       name: "Air Law",
@@ -53,30 +71,30 @@ function BookTable() {
   ];
 
   return (
-    <ReactScrollAnimation animateIn="zoomIn" animateOnce={true}>
-      <div className="table-container">
-        <div className="book-table">
-          <table>
-            <thead>
-              <tr>
-                <th>Subject</th>
-                <th>No. of Questions</th>
-                <th>Marks</th>
+    // <ReactScrollAnimation animateIn="zoomIn" animateOnce={true}>
+    <div className="table-container">
+      <div className={`book-table ${shouldAnimate ? "active" : ""}`}>
+        <table>
+          <thead>
+            <tr>
+              <th>Subject</th>
+              <th>No. of Questions</th>
+              <th>Marks</th>
+            </tr>
+          </thead>
+          <tbody>
+            {books.map((book, index) => (
+              <tr key={index}>
+                <td>{book.name}</td>
+                <td>{book.questions}</td>
+                <td>{book.marks}</td>
               </tr>
-            </thead>
-            <tbody>
-              {books.map((book, index) => (
-                <tr key={index}>
-                  <td>{book.name}</td>
-                  <td>{book.questions}</td>
-                  <td>{book.marks}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+            ))}
+          </tbody>
+        </table>
       </div>
-    </ReactScrollAnimation>
+    </div>
+    // </ReactScrollAnimation>
   );
 }
 
