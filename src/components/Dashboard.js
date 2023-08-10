@@ -231,12 +231,12 @@ const Dashboard = () => {
         <div className="dashboard-section">
           <h2>Dashboard</h2>
 
-          <div className="dashboard-section">
+          <div className="dashboard-section1">
             <div className="dashboard-user">
               <FaUserAlt size={25} />
             </div>
             {/* <h3>{user.first_name}</h3> */}
-            <h3>Imran Ansari</h3>
+            <h3>Imran</h3>
 
             <div className="dashboard-item">
               <button onClick={handleLogout} className="logout-btn">
