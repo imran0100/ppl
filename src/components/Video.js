@@ -1,7 +1,25 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./VideoBackground.css"; // Import your CSS file if you have one
 
 const Video = () => {
+  const [shouldAnimate, setShouldAnimate] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const section2Right = document.querySelector(".col-1");
+      const section2Top = section2Right.offsetTop;
+      const windowTop = window.scrollY + window.innerHeight;
+
+      if (windowTop > section2Top) {
+        setShouldAnimate(true);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
   const pricingData = [
     {
       title: "Basic",
@@ -37,7 +55,7 @@ const Video = () => {
       <div className="content">
         <div className="main">
           <div className="container">
-            <div className="grid">
+            <div className={`grid ${shouldAnimate ? "active" : ""}`}>
               {pricingData.map((pricingItem, index) => (
                 <div className="card" key={index}>
                   <h2 className="card_title">{pricingItem.title}</h2>

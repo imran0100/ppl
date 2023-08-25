@@ -51,6 +51,8 @@ import Faq from "./components/Faq";
 import Contact from "./components/Contact";
 import Notification from "./components/Notification";
 import AAA from "./components/AAA";
+import SeeStudentProgress from "./components/SeeStudentProgress";
+import AdminNotification from "./components/AdminNotification";
 function App() {
   return (
     <div className="App">
@@ -76,6 +78,8 @@ function App() {
             <Route path="/choose" element={<ChooseSubject />} />
             <Route path="/notification" element={<Notification />} />
             <Route path="/test/:id" element={<TestPage />} />
+            <Route path="/seeprogress" element={<SeeStudentProgress />} />
+            <Route path="/adminnotifiaction" element={<AdminNotification />} />
           </Route>
           <Route path="/admin" element={<Admin />} />
 

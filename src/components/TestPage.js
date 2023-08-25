@@ -1,7 +1,11 @@
 // import React, { useEffect, useState } from "react";
 // import axios from "axios";
+// import logo from "../logo/WhatsApp Image 2023-07-12 at 9.58.35 AM.png";
+
 // import "./Tttt.css"; // Import the CSS file for styling
 // import QuestionMenu from "./QuestionMenu";
+// import CircleProgress from "./CircleProgress";
+// import { useNavigate, Link } from "react-router-dom";
 
 // const TestPage = () => {
 //   const [questions, setQuestions] = useState([
@@ -42,10 +46,19 @@
 //   const [score, setScore] = useState(0);
 //   const [resultData, setResultData] = useState([]);
 //   const [submitted, setSubmitted] = useState(false);
+//   const [isOpen, setIsOpen] = useState(false);
+
+//   const toggleMenu = () => {
+//     setIsOpen(!isOpen);
+//   };
 //   useEffect(() => {
 //     // fetchQuestions();
 //   }, []);
-
+//   useEffect(() => {
+//     if (selectedAnswer !== "") {
+//       handleNextQuestion();
+//     }
+//   }, [selectedAnswer]);
 //   const fetchQuestions = async () => {
 //     try {
 //       const response = await axios.get(
@@ -99,79 +112,156 @@
 //   };
 //   if (submitted) {
 //     return (
-//       <div className="result-container">
-//         <h1>Test Results</h1>
-//         <p style={{ fontSize: "2rem" }}>Score: {score}</p>
-//         {resultData.map((questionData, index) => (
-//           <div className="result-data" key={index}>
-//             {console.log(questionData, "hgughgb")}
-//             <h4> {questionData.question}</h4>
-//             <p>
-//               Correct Answer:{" "}
-//               <span style={{ color: "green", fontWeight: "600" }}>
-//                 {questionData.correctAnswer}
-//               </span>
-//             </p>
-//             <p>
-//               Your Answer:{" "}
+//       <>
+//         {" "}
+//         <div id="container-nav" className={`navbar ${isOpen ? "open" : ""}`}>
+//           <nav className={`navbar ${isOpen ? "open" : ""}`}>
+//             <img className="link-item" src={logo} alt="logo" />
+//             <div className="menu-icon" onClick={toggleMenu}>
+//               <div className="bar"></div>
+//               <div className="bar"></div>
+//               <div className="bar"></div>
+//             </div>
+//             <div className={`nav-links ${isOpen ? "show" : ""}`}>
+//               <Link to="/" className="link-item">
+//                 HOME
+//               </Link>
+//               <Link to="/faq" className="link-item">
+//                 FAQ
+//               </Link>
+//               <Link to="/contact" className="link-item">
+//                 CONTACT US
+//               </Link>
+//               {localStorage.getItem("user_322") ? (
+//                 <Link to="/dashboard" className="link-item">
+//                   {localStorage.getItem("user_322")
+//                     ? "GO TO DASHBOARD"
+//                     : "LOGIN"}
+//                 </Link>
+//               ) : (
+//                 <Link to="/login" className="link-item">
+//                   {localStorage.getItem("user_322")
+//                     ? "GO TO DASHBOARD"
+//                     : "LOGIN"}
+//                 </Link>
+//               )}
+//             </div>
+//           </nav>
+//         </div>
+//         <div className="result-container">
+//           <h1>Test Results</h1>
+//           <div className="result-heading">
+//             {" "}
+//             <p style={{ fontSize: "2rem" }}>
+//               Score:{" "}
 //               <span
-//                 style={{
-//                   fontWeight: "600",
-//                   color: questionData.isCorrect ? "green" : "red",
-//                 }}
+//                 style={{ color: "green", fontWeight: "600", fontSize: "2rem" }}
 //               >
-//                 {questionData.userAnswer || "Not attempted"}
+//                 {score}
 //               </span>
 //             </p>
+//             <p style={{ fontSize: "2rem" }}>Progress</p>
+//             <div className="cirle-inside">
+//               <div>
+//                 <CircleProgress
+//                   percentage={(score / resultData.length) * 100}
+//                 />
+//               </div>
+//               <p className="circle-percentage">
+//                 {(score / resultData.length) * 100}%
+//               </p>
+//             </div>
 //           </div>
-//         ))}
-//       </div>
+//           {resultData.map((questionData, index) => (
+//             <div className="result-data" key={index}>
+//               <h4> {questionData.question}</h4>
+//               <p>
+//                 Correct Answer:{" "}
+//                 <span style={{ color: "green", fontWeight: "600" }}>
+//                   {questionData.correctAnswer}
+//                 </span>
+//               </p>
+//               <p>
+//                 Your Answer:{" "}
+//                 <span
+//                   style={{
+//                     fontWeight: "600",
+//                     color: questionData.isCorrect ? "green" : "red",
+//                   }}
+//                 >
+//                   {questionData.userAnswer || "Not attempted"}
+//                 </span>
+//               </p>
+//             </div>
+//           ))}
+//         </div>
+//       </>
 //     );
 //   }
 
 //   const currentQuestionObj = questions[currentQuestion];
 //   return (
-//     <div className="Test-Container">
-//       <div className="tabcontent">
-//         <p>Question {currentQuestion + 1}</p>
-//         <p style={{ marginBottom: "15px" }}>
-//           {currentQuestionObj.question_name}
-//         </p>
-//         <ul className="questionOptionList">
-//           {currentQuestionObj.options.map((answer, index) => (
-//             <li
-//               className={`questionOption ${
-//                 selectedAnswer === answer ? "selected" : ""
-//               }`}
-//               key={index}
-//               onClick={() => handleAnswerSelect(answer)}
-//               disabled={selectedAnswer !== ""}
-//             >
-//               <a className="cursor">{String.fromCharCode(65 + index)}</a>
-//               <div className="texter">
-//                 <span> {answer}</span>
-//               </div>
-//             </li>
-//           ))}
-//         </ul>
-//         <button
-//           className="next"
-//           onClick={handleNextQuestion}
-//           disabled={selectedAnswer === ""}
-//         >
-//           Next Question
-//         </button>
-//         <button onClick={handleSubmit} className="next">
-//           Submit
-//         </button>
+//     <>
+//       {" "}
+//       <div id="container-nav" className={`navbar ${isOpen ? "open" : ""}`}>
+//         <nav className={`navbar ${isOpen ? "open" : ""}`}>
+//           <img className="link-item" src={logo} alt="logo" />
+//           <div className="menu-icon" onClick={toggleMenu}>
+//             <div className="bar"></div>
+//             <div className="bar"></div>
+//             <div className="bar"></div>
+//           </div>
+//           <div className={`nav-links ${isOpen ? "show" : ""}`}>
+//             <Link to="/" className="link-item">
+//               HOME
+//             </Link>
+//             <Link to="/faq" className="link-item">
+//               FAQ
+//             </Link>
+//             <Link to="/contact" className="link-item">
+//               CONTACT US
+//             </Link>
+//           </div>
+//         </nav>
 //       </div>
-//       <QuestionMenu
-//         totalQuestions={questions.length}
-//         currentQuestion={currentQuestion}
-//         handleQuestionChange={handleQuestionChange}
-//         resultData={resultData}
-//       />
-//     </div>
+//       <div className="Test-Container">
+//         <div className="tabcontent">
+//           <p>Question {currentQuestion + 1}</p>
+//           <p style={{ marginBottom: "15px" }}>
+//             {currentQuestionObj.question_name}
+//           </p>
+//           <ul className="questionOptionList">
+//             {currentQuestionObj.options.map((answer, index) => (
+//               <li
+//                 className={`questionOption ${
+//                   selectedAnswer === answer ? "selected" : ""
+//                 }`}
+//                 key={index}
+//                 onClick={() => handleAnswerSelect(answer)}
+//                 disabled={selectedAnswer !== ""}
+//               >
+//                 <a className="cursor">{String.fromCharCode(65 + index)}</a>
+//                 <div className="texter">
+//                   <span> {answer}</span>
+//                 </div>
+//               </li>
+//             ))}
+//           </ul>
+
+//           <div>
+//             <button onClick={handleSubmit} className="next">
+//               Submit
+//             </button>
+//           </div>
+//         </div>
+//         <QuestionMenu
+//           totalQuestions={questions.length}
+//           currentQuestion={currentQuestion}
+//           handleQuestionChange={handleQuestionChange}
+//           resultData={resultData}
+//         />
+//       </div>
+//     </>
 //   );
 // };
 

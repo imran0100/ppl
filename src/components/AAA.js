@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import "./AAA.css";
+import { useNavigate, Link } from "react-router-dom";
+import logo from "../logo/WhatsApp Image 2023-07-12 at 9.58.35 AM.png";
 const AAA = () => {
   const initialQuestionBank = [
     {
@@ -37,7 +39,15 @@ const AAA = () => {
 
   const [questions, setQuestions] = useState(initialQuestionBank);
   const [editIndex, setEditIndex] = useState(-1);
-
+  const navigate = useNavigate();
+  const [isOpen, setIsOpen] = useState(false);
+  const toggleMenu = () => {
+    setIsOpen(!isOpen);
+  };
+  const handleLogout = () => {
+    localStorage.removeItem("user_322");
+    navigate("/");
+  };
   const handleEdit = (index) => {
     setEditIndex(index);
   };
@@ -56,26 +66,55 @@ const AAA = () => {
   };
 
   return (
-    <div className="question-bank">
-      <h1>Question Bank</h1>
-      {questions.map((question, index) => (
-        <div key={index} className="question">
-          {editIndex === index ? (
-            <QuestionEditForm
-              question={question}
-              onSave={(updatedQuestion) => handleSave(index, updatedQuestion)}
-              onCancel={() => setEditIndex(-1)}
-            />
-          ) : (
-            <QuestionDisplay
-              question={question}
-              onEdit={() => handleEdit(index)}
-              onDelete={() => handleDelete(index)}
-            />
-          )}
-        </div>
-      ))}
-    </div>
+    <>
+      <div id="container-nav" className={`navbar ${isOpen ? "open" : ""}`}>
+        <nav className={`navbar ${isOpen ? "open" : ""}`}>
+          <img className="link-item" src={logo} alt="logo" />
+          <div className="menu-icon" onClick={toggleMenu}>
+            <div className="bar"></div>
+            <div className="bar"></div>
+            <div className="bar"></div>
+          </div>
+          <div className={`nav-links ${isOpen ? "show" : ""}`}>
+            <Link to="/admin" className="link-item">
+              Admin Dashboard
+            </Link>
+            <Link to="/choose" className="link-item">
+              Add Question
+            </Link>
+
+            <Link to="/seeprogress" className="link-item">
+              Students Progress
+            </Link>
+            <Link to="/adminnotifiaction" className="link-item">
+              Notification
+            </Link>
+            <a className="link-item" onClick={handleLogout}>
+              Logout
+            </a>
+          </div>
+        </nav>
+      </div>
+      <div className="question-bank">
+        {questions.map((question, index) => (
+          <div key={index} className="question">
+            {editIndex === index ? (
+              <QuestionEditForm
+                question={question}
+                onSave={(updatedQuestion) => handleSave(index, updatedQuestion)}
+                onCancel={() => setEditIndex(-1)}
+              />
+            ) : (
+              <QuestionDisplay
+                question={question}
+                onEdit={() => handleEdit(index)}
+                onDelete={() => handleDelete(index)}
+              />
+            )}
+          </div>
+        ))}
+      </div>
+    </>
   );
 };
 

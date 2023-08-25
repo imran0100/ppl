@@ -266,7 +266,7 @@ const Dashboard = () => {
             {" "}
             <div className="subject-heading"> Select a Subject</div>
             {subjects.map((book, index) => (
-              <div onClick={() => handleTest(book.sub_id)} key={book.sub_id}>
+              <div onClick={() => handleTest(book.sub_id)} key={book.id}>
                 <div className="sub-style">{book.sub_name}</div>
               </div>
             ))}

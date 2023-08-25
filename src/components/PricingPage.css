@@ -176,7 +176,7 @@ a.cta_btn {
   background: linear-gradient(180deg, #2234ae 0%, #191714 74%);
   background: linear-gradient(180deg, #8e2de2 0%, #4a00e0 100%);
   background: linear-gradient(180deg, #5a6adbd9 0%, #041193 74%);
-  background: linear-gradient(0deg, #211d90, #d9a2ff);
+  /* background: linear-gradient(0deg, #211d90, #d9a2ff); */
 
   border-radius: 29px;
   padding: 20px 0;

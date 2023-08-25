@@ -78,16 +78,16 @@ function BookTable() {
           <thead>
             <tr>
               <th>Subject</th>
-              <th>No. of Questions</th>
-              <th>Marks</th>
+              <th>EASA 2016</th>
+              <th>EASA 2021</th>
             </tr>
           </thead>
           <tbody>
             {books.map((book, index) => (
               <tr key={index}>
                 <td>{book.name}</td>
-                <td>{book.questions}</td>
-                <td>{book.marks}</td>
+                <td>YES</td>
+                <td>YES</td>
               </tr>
             ))}
           </tbody>

@@ -250,7 +250,7 @@ import Section2 from "./Section2";
 import Section3 from "./Section3";
 import { useNavigate, Link } from "react-router-dom";
 import Footer from "./Footer";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import TestPage from "./TestPage";
 import ChooseSubject from "./ChooseSubject";
 import Faq from "./Faq";
@@ -265,7 +265,11 @@ import ScrollAnimation from "./ScrollAnimation";
 function HomePage() {
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
+  const [shouldAnimate, setShouldAnimate] = useState(false);
 
+  useEffect(() => {
+    setShouldAnimate(true);
+  }, []);
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
@@ -318,7 +322,7 @@ function HomePage() {
         </nav>
       </div>
       <section className="section">
-        <div className="side">
+        <div className={`side ${shouldAnimate ? "active" : ""}`}>
           <h1>Latest Version Of EASA 2016 And 2021 Question Bank</h1>
           <p>
             Our database contains high percentage of REAL EXAM QUESTIONS.

@@ -75,6 +75,7 @@ nav {
   display: flex;
   align-items: center;
   max-width: 80rem;
+  max-width: 86%;
   margin: 0 auto;
   justify-content: space-between;
 }
@@ -82,9 +83,13 @@ nav {
 nav img {
   width: 27%;
 }
-
+.nav-links a:hover {
+  cursor: pointer;
+}
 .link-item {
   color: #2121c0;
+  color: #0003ff;
+
   font-weight: 600;
   padding-right: 1rem;
   text-decoration: none;
@@ -138,8 +143,14 @@ nav img:hover {
   justify-content: center;
   align-items: center;
   gap: 1rem;
+  transform: translateY(50px);
+  transition: opacity 0.5s ease-in-out, transform 0.8s ease-in-out;
+  transform: scale(0.3);
 }
-
+.side.active {
+  opacity: 1;
+  transform: scale(1);
+}
 .side h1 {
   font-size: 2.5rem;
 }
@@ -319,6 +330,7 @@ nav img:hover {
 
   nav {
     /* flex-direction: column; */
+    max-width: 98%;
     align-items: center;
     padding: 1rem 0.7rem 0.7rem 0.7rem;
     /* height: auto; */
