@@ -276,39 +276,7 @@ import CircleProgress from "./CircleProgress";
 import { useNavigate, Link } from "react-router-dom";
 
 const TestPage = () => {
-  const [questions, setQuestions] = useState([
-    {
-      question_name: "What is the capital of France?",
-      options: ["London", "Paris", "Berlin", "Madrid"],
-      correct_answer: "Paris",
-    },
-    {
-      question_name: 'Which planet is known as the "Red Planet"?',
-      options: ["Mars", "Venus", "Jupiter", "Saturn"],
-      correct_answer: "Mars",
-    },
-    {
-      question_name: 'Who wrote the play "Romeo and Juliet"?',
-      options: [
-        "William Shakespeare",
-        "Jane Austen",
-        "Charles Dickens",
-        "Mark Twain",
-      ],
-      correct_answer: "William Shakespeare",
-    },
-    {
-      question_name: "What is the chemical symbol for water?",
-      options: ["H2O", "CO2", "O2", "NaCl"],
-      correct_answer: "H2O",
-    },
-    {
-      question_name: "Which country is famous for the Taj Mahal?",
-      options: ["India", "China", "Egypt", "Italy"],
-      correct_answer: "India",
-    },
-    // Add more questions as needed...
-  ]);
+  const [questions, setQuestions] = useState([]);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState("");
   const [score, setScore] = useState(0);
@@ -320,7 +288,7 @@ const TestPage = () => {
     setIsOpen(!isOpen);
   };
   useEffect(() => {
-    // fetchQuestions();
+    fetchQuestions();
   }, []);
   useEffect(() => {
     if (selectedAnswer !== "") {
@@ -330,7 +298,7 @@ const TestPage = () => {
   const fetchQuestions = async () => {
     try {
       const response = await axios.get(
-        "http://13.127.37.70:5000/api/v1/getallquestion"
+        "http://13.48.26.232:5000/api/v1/getallquestion"
       );
       setQuestions(response.data.data);
     } catch (error) {

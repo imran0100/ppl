@@ -128,66 +128,66 @@ import { useNavigate, Link } from "react-router-dom";
 import logo from "../logo/WhatsApp Image 2023-07-12 at 9.58.35 AM.png";
 import { FaUserAlt } from "react-icons/fa";
 const Dashboard = () => {
-  const subje = [
-    {
-      id: 1,
-      sub_name: "Air Law",
-    },
-    {
-      id: 2,
-      sub_name: "Principles of Flight",
-    },
-    {
-      id: 3,
-      sub_name: "Operational procedures",
-    },
-    {
-      id: 4,
-      sub_name: "Meteorology",
-    },
-    {
-      id: 5,
-      sub_name: "Communications",
-    },
-    {
-      id: 6,
-      sub_name: "Flight planning and performance",
-    },
-    {
-      id: 7,
-      sub_name: "Navigation",
-    },
-    {
-      id: 8,
-      sub_name: "Human performance and limitations",
-    },
-    {
-      id: 9,
-      sub_name: "Aircraft general knowledge",
-    },
-  ];
+  // const subje = [
+  //   {
+  //     id: 1,
+  //     sub_name: "Air Law",
+  //   },
+  //   {
+  //     id: 2,
+  //     sub_name: "Principles of Flight",
+  //   },
+  //   {
+  //     id: 3,
+  //     sub_name: "Operational procedures",
+  //   },
+  //   {
+  //     id: 4,
+  //     sub_name: "Meteorology",
+  //   },
+  //   {
+  //     id: 5,
+  //     sub_name: "Communications",
+  //   },
+  //   {
+  //     id: 6,
+  //     sub_name: "Flight planning and performance",
+  //   },
+  //   {
+  //     id: 7,
+  //     sub_name: "Navigation",
+  //   },
+  //   {
+  //     id: 8,
+  //     sub_name: "Human performance and limitations",
+  //   },
+  //   {
+  //     id: 9,
+  //     sub_name: "Aircraft general knowledge",
+  //   },
+  // ];
 
-  const [subjects, setSubjects] = useState(subje);
+  const [subjects, setSubjects] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     try {
-  //       const response = await axios.get(
-  //         "http://13.127.37.70:5000/api/v1/get_allsubjectlist"
-  //       );
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          "http://13.48.26.232:5000/api/v1/get_allsubjectlist"
+        );
 
-  //       setSubjects(response.data.data);
-  //     } catch (error) {
-  //       console.error("Error fetching data:", error);
-  //     }
-  //   };
+        setSubjects(response.data.data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
 
-  //   fetchData();
-  // }, []);
+    fetchData();
+  }, []);
 
   const navigate = useNavigate();
 
@@ -235,8 +235,8 @@ const Dashboard = () => {
             <div className="dashboard-user">
               <FaUserAlt size={25} />
             </div>
-            {/* <h3>{user.first_name}</h3> */}
-            <h3>Imran</h3>
+            <h3>{user.first_name}</h3>
+            {/* <h3>Imran</h3> */}
 
             <div className="dashboard-item">
               <button onClick={handleLogout} className="logout-btn">

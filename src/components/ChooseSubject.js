@@ -9,7 +9,7 @@ function ChooseSubject() {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "http://13.127.37.70:5000/api/v1/get_allsubjectlist"
+          "http://13.48.26.232:5000/api/v1/get_allsubjectlist"
         );
 
         setSubjects(response.data.data);
@@ -26,24 +26,21 @@ function ChooseSubject() {
   };
 
   return (
-    <div>
-      {" "}
-      <div className="book-table">
-        <table>
-          <thead>
-            <tr>
-              <th> Select a Subject</th>
+    <div className="book-table1">
+      <table>
+        <thead>
+          <tr>
+            <th> Select a Subject</th>
+          </tr>
+        </thead>
+        <tbody>
+          {subjects.map((book, index) => (
+            <tr key={book.sub_id} onClick={() => handleClick(book.sub_id)}>
+              <td>{book.sub_name}</td>
             </tr>
-          </thead>
-          <tbody>
-            {subjects.map((book, index) => (
-              <tr key={book.sub_id} onClick={() => handleClick(book.sub_id)}>
-                <td>{book.sub_name}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 }

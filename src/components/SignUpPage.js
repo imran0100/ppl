@@ -179,7 +179,7 @@ const Signup = () => {
       };
 
       axios
-        .post("http://13.127.37.70:5000/api/v1/register", userData)
+        .post("http://13.48.26.232:5000/api/v1/register", userData)
         .then((response) => {
           // Handle the successful response from the API
           console.log("Signup successful!");

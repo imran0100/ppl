@@ -28,7 +28,7 @@
 // export default App;
 import "./App.css";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import backgroundImage from "./logo/background.jpg";
+// import backgroundImage from "./logo/background.jpg";
 import Footer from "./components/Footer";
 import Dashboard from "./components/Dashboard";
 import HomePage from "./components/HomePage";

@@ -272,36 +272,36 @@ const LoginPage = () => {
         password,
       };
       //this code i working fine///
-      // axios
-      //   .post("http://13.127.37.70:5000/api/v1/signin", userData)
-      //   .then((response) => {
-      //     console.log("Login successful!");
-      //     console.log(response.data);
-      //     localStorage.setItem("user_322", JSON.stringify(response.data.data));
-      //     handleLogin();
-      //   })
-      //   .catch((error) => {
-      //     console.error("Error during login:", error.response?.data);
+      axios
+        .post("http://13.48.26.232:5000/api/v1/signin", userData)
+        .then((response) => {
+          console.log("Login successful!");
+          console.log(response.data);
+          localStorage.setItem("user_322", JSON.stringify(response.data.data));
+          handleLogin();
+        })
+        .catch((error) => {
+          console.error("Error during login:", error.response?.data);
 
-      //     if (
-      //       error.response &&
-      //       error.response.data &&
-      //       error.response.data.message
-      //     ) {
-      //       setErrors({ general: error.response.data.message });
-      //     } else {
-      //       setErrors({ general: "An error occurred during login." });
-      //     }
-      //   });
+          if (
+            error.response &&
+            error.response.data &&
+            error.response.data.message
+          ) {
+            setErrors({ general: error.response.data.message });
+          } else {
+            setErrors({ general: "An error occurred during login." });
+          }
+        });
       //////////////////////////////////////////////////////////////////////////////////
-      if (email === "1@2.com" && password === "123") {
-        const upadated = { ...userData, isAdmin: true };
-        localStorage.setItem("user_322", JSON.stringify(upadated));
-        handleLogin();
-      } else {
-        localStorage.setItem("user_322", JSON.stringify(userData));
-        handleLogin();
-      }
+      // if (email === "1@2.com" && password === "123") {
+      //   const upadated = { ...userData, isAdmin: true };
+      //   localStorage.setItem("user_322", JSON.stringify(upadated));
+      //   handleLogin();
+      // } else {
+      //   localStorage.setItem("user_322", JSON.stringify(userData));
+      //   handleLogin();
+      // }
     }
   };
 
