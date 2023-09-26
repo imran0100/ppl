@@ -120,11 +120,12 @@ const PricingPage = () => {
     },
   ];
   const checkout = async (plan) => {
-    const url = "http://localhost:5000/api/v1/create-subscription-checkout";
+    // const url = "http://localhost:5000/api/v1/create-subscription-checkout";
+    const url = "http://13.48.26.232:5000/api/v1/create_subscription_checkout";
     const headers = {
       "Content-Type": "application/json",
     };
-    const data = { plan: plan };
+    const data = { customerId: 5, plan: plan };
 
     try {
       const res = await axios.post(url, data, { headers, mode: "cors" });

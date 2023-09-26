@@ -110,7 +110,7 @@
 // }
 
 // export default UserProgress;
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import CircleProgress from "./CircleProgress";
 import "./UserProgress.css"; // Import the CSS file
 
@@ -118,6 +118,25 @@ import { useNavigate, Link } from "react-router-dom";
 import logo from "../logo/WhatsApp Image 2023-07-12 at 9.58.35 AM.png";
 function UserProgress() {
   const [isOpen, setIsOpen] = useState(false);
+  const [Progress, setProgress] = useState([]);
+  let user = JSON.parse(localStorage.getItem("user_322"));
+  useEffect(() => {
+    // Fetch data from your API here
+    // Replace this with your actual API endpoint
+    fetch("http://13.48.26.232:5000/api/v1/getall_total_result")
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        const filterData = data.data.filter(
+          (dat) => dat.userId === user.userId
+        );
+        setProgress(filterData);
+        console.log(filterData);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  }, []);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -174,7 +193,31 @@ function UserProgress() {
       },
     ],
   };
-  const navigate = useNavigate();
+  const highestScoresWithSubjectName = Progress.map((item) => {
+    const subject = data.subjects.find((subject) => subject.id === item.sub_id);
+    return {
+      sub_id: item.sub_id,
+      name: subject ? subject.name : "Unknown Subject",
+      score: item.score,
+    };
+  });
+
+  console.log(highestScoresWithSubjectName);
+  const highestScores = {};
+
+  highestScoresWithSubjectName.forEach((item) => {
+    const subId = item.sub_id;
+    const score = parseInt(item.score);
+
+    if (!highestScores[subId] || score > highestScores[subId].score) {
+      highestScores[subId] = { sub_id: subId, name: item.name, score: score };
+    }
+  });
+
+  const highestScoresArray = Object.values(highestScores);
+
+  console.log(highestScoresArray);
+  // const navigate = useNavigate();
 
   return (
     <>
@@ -208,7 +251,7 @@ function UserProgress() {
           <p>Subjects</p>
           <p>Progress</p>
         </div>
-        {data.subjects.map((book, index) => (
+        {highestScoresArray.map((book, index) => (
           <div className="result-final" key={index}>
             <div style={{ fontSize: "1.5rem", paddingLeft: "2rem" }}>
               {book.name}
@@ -216,9 +259,9 @@ function UserProgress() {
 
             <div className="cirle-ins">
               <div>
-                <CircleProgress percentage={book.percentage} />
+                <CircleProgress percentage={book.score} />
               </div>
-              <p className="circle-per">{book.percentage}%</p>
+              <p className="circle-per">{book.score}%</p>
             </div>
           </div>
         ))}

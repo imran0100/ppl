@@ -273,7 +273,8 @@ import logo from "../logo/WhatsApp Image 2023-07-12 at 9.58.35 AM.png";
 import "./Tttt.css"; // Import the CSS file for styling
 import QuestionMenu from "./QuestionMenu";
 import CircleProgress from "./CircleProgress";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link, useParams } from "react-router-dom";
+// import { useParams } from "react-router-dom";
 
 const TestPage = () => {
   const [questions, setQuestions] = useState([]);
@@ -283,7 +284,9 @@ const TestPage = () => {
   const [resultData, setResultData] = useState([]);
   const [submitted, setSubmitted] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-
+  const { id } = useParams();
+  const navigate = useNavigate();
+  console.log(id, "id check");
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
@@ -300,15 +303,16 @@ const TestPage = () => {
       const response = await axios.get(
         "http://13.48.26.232:5000/api/v1/getallquestion"
       );
-      setQuestions(response.data.data);
+      const filteredQuestions = response.data.data.filter(
+        (ques) => ques.sub_id === Number(id)
+      );
+      setQuestions(filteredQuestions);
     } catch (error) {
       console.log(error);
     }
   };
 
-  const handleSubmit = () => {
-    setSubmitted(true);
-  };
+  console.log("test", score);
   const handleAnswerSelect = (answer) => {
     setSelectedAnswer(answer);
   };
@@ -331,13 +335,17 @@ const TestPage = () => {
     setResultData((prevResultData) => [...prevResultData, questionData]);
 
     setSelectedAnswer("");
+    const sub = JSON.parse(localStorage.getItem("user_322"));
+    !sub.subscription && navigate("/pricing");
     setCurrentQuestion(currentQuestion + 1);
     if (currentQuestion === questions.length - 1) {
       // If it's the last question, automatically submit the test
       handleSubmit();
     }
   };
-
+  const handleSubmit = () => {
+    setSubmitted(true);
+  };
   if (questions.length === 0) {
     return <div>Loading...</div>;
   }
@@ -346,6 +354,13 @@ const TestPage = () => {
       setCurrentQuestion(questionNumber);
     }
   };
+  let user = JSON.parse(localStorage.getItem("user_322"));
+  const resultDataApi = {
+    userId: user.userId,
+    sub_id: Number(id),
+    score: (score / questions.length) * 100,
+  };
+
   if (submitted) {
     return (
       <>
@@ -401,6 +416,7 @@ const TestPage = () => {
               <div>
                 <CircleProgress
                   percentage={(score / resultData.length) * 100}
+                  resultDataApi={resultDataApi}
                 />
               </div>
               <p className="circle-percentage">

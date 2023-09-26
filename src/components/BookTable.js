@@ -24,49 +24,58 @@ function BookTable() {
   }, []);
   const books = [
     {
+      id: 1,
       name: "Air Law",
-      questions: 50,
-      marks: 100,
+      data1: "YES",
+      data2: "YES",
     },
     {
+      id: 2,
       name: "Principles of Flight",
-      questions: 60,
-      marks: 120,
+      data1: "YES",
+      data2: "YES",
     },
     {
-      name: "Operational Procedures",
-      questions: 45,
-      marks: 90,
+      id: 3,
+      name: "Operational procedures",
+      data1: "YES",
+      data2: "YES",
     },
     {
+      id: 4,
       name: "Meteorology",
-      questions: 70,
-      marks: 140,
+      data1: "YES",
+      data2: "YES",
     },
     {
+      id: 5,
       name: "Communications",
-      questions: 40,
-      marks: 80,
+      data1: "YES",
+      data2: "YES",
     },
     {
-      name: "Flight Planning and Performance",
-      questions: 55,
-      marks: 110,
+      id: 6,
+      name: "Flight planning and performance",
+      data1: "YES",
+      data2: "YES",
     },
     {
+      id: 7,
       name: "Navigation",
-      questions: 65,
-      marks: 130,
+      data1: "YES",
+      data2: "YES",
     },
     {
-      name: "Human Performance and Limitations",
-      questions: 30,
-      marks: 60,
+      id: 8,
+      name: "Human performance and limitations",
+      data1: "YES",
+      data2: "YES",
     },
     {
-      name: "Aircraft General Knowledge",
-      questions: 75,
-      marks: 150,
+      id: 9,
+      name: "Aircraft general knowledge",
+      data1: "YES",
+      data2: "YES",
     },
   ];
 
@@ -78,16 +87,16 @@ function BookTable() {
           <thead>
             <tr>
               <th>Subject</th>
-              <th>EASA 2016</th>
-              <th>EASA 2021</th>
+              <th style={{ textAlign: "center" }}>EASA 2016</th>
+              <th style={{ textAlign: "center" }}>EASA 2021</th>
             </tr>
           </thead>
           <tbody>
             {books.map((book, index) => (
               <tr key={index}>
                 <td>{book.name}</td>
-                <td>YES</td>
-                <td>YES</td>
+                <td style={{ textAlign: "center" }}>{book.data1}</td>
+                <td style={{ textAlign: "center" }}>{book.data2}</td>
               </tr>
             ))}
           </tbody>

@@ -1,10 +1,29 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../logo/WhatsApp Image 2023-07-12 at 9.58.35 AM.png";
 function Notification() {
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
+  const [notifications, setNotifications] = useState([]);
 
+  useEffect(() => {
+    // Define the API URL
+    const apiUrl = "http://13.48.26.232:5000/api/v1/getAllnotification";
+    // const apiUrl = "https://jsonplaceholder.typicode.com/users";
+    // Use Axios to make a GET request to the API
+    axios
+      .get(apiUrl)
+      .then((response) => {
+        // Assuming the API returns an array of notifications
+        setNotifications(response.data.data);
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  }, []);
+  console.log(notifications);
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
@@ -51,7 +70,9 @@ function Notification() {
           </div>
         </nav>
       </div>
-      There is no Notification
+      {notifications.map((notification) => (
+        <div key={notification.id}>{notification.description}</div>
+      ))}
     </div>
   );
 }

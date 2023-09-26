@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import "./Dashboard.css";
 import axios from "axios";
+// import { useNavigate } from "react-router-dom";
 import { useNavigate, Link } from "react-router-dom";
 import logo from "../logo/WhatsApp Image 2023-07-12 at 9.58.35 AM.png";
-function ChooseSubject() {
+function ChooseSubjectEdit() {
   const [subjects, setSubjects] = useState([]);
 
   useEffect(() => {
@@ -21,8 +22,6 @@ function ChooseSubject() {
 
     fetchData();
   }, []);
-
-  const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -31,9 +30,9 @@ function ChooseSubject() {
     localStorage.removeItem("user_322");
     navigate("/");
   };
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const handleClick = (id) => {
-    navigate(`/question/${id}`);
+    navigate(`/aaa/${id}`);
   };
 
   return (
@@ -51,8 +50,8 @@ function ChooseSubject() {
             <Link to="/admin" className="link-item">
               Admin Dashboard
             </Link>
-            <Link to="/chooseEdit" className="link-item">
-              Edit Question
+            <Link to="/choose" className="link-item">
+              Add Question
             </Link>
             <Link to="/seeprogress" className="link-item">
               Students Progress
@@ -70,7 +69,7 @@ function ChooseSubject() {
         <table>
           <thead>
             <tr>
-              <th> Select a Subject for add question</th>
+              <th> Select a Subject for edit and delete questions </th>
             </tr>
           </thead>
           <tbody>
@@ -86,4 +85,4 @@ function ChooseSubject() {
   );
 }
 
-export default ChooseSubject;
+export default ChooseSubjectEdit;

@@ -35,6 +35,9 @@
   cursor: pointer;
   margin: 0.5rem;
 }
+.book-table1 {
+  padding: 2rem 6rem 0rem 6rem;
+}
 .notify {
   background: linear-gradient(180deg, #ffc710, #ff7300) !important;
 }

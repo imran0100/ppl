@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import CircleProgress from "./CircleProgress";
 import "./UserProgress.css"; // Import the CSS file
 
@@ -6,10 +6,36 @@ import { useNavigate, Link } from "react-router-dom";
 import logo from "../logo/WhatsApp Image 2023-07-12 at 9.58.35 AM.png";
 function SeeStudentProgress() {
   const [isOpen, setIsOpen] = useState(false);
+  const [users, setUsers] = useState([]);
+  const [totalResult, setTotalResult] = useState([]);
 
+  useEffect(() => {
+    // Fetch the first API
+    fetch("http://13.48.26.232:5000/api/v1/allusers")
+      .then((response) => response.json())
+      .then((data) => {
+        // Update the users state with the fetched data
+        setUsers(data.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching users data:", error);
+      });
+
+    // Fetch the second API
+    fetch("http://13.48.26.232:5000/api/v1/getall_total_result")
+      .then((response) => response.json())
+      .then((data) => {
+        // Update the totalResult state with the fetched data
+        setTotalResult(data.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching total result data:", error);
+      });
+  }, []);
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
+  console.log(totalResult[2].score, "daaaaaaaaaaaaaaaaaaa");
   const handleLogout = () => {
     localStorage.removeItem("user_322");
     navigate("/");
@@ -28,7 +54,7 @@ function SeeStudentProgress() {
     { name: "Jessica", percentage: 70.2 },
   ];
   const navigate = useNavigate();
-
+  console.log(users, totalResult);
   return (
     <>
       {" "}
@@ -71,7 +97,7 @@ function SeeStudentProgress() {
             <Link to="/choose" className="link-item">
               Add Question
             </Link>
-            <Link to="/aaa" className="link-item">
+            <Link to="/chooseEdit" className="link-item">
               Edit Question
             </Link>
 
@@ -89,17 +115,25 @@ function SeeStudentProgress() {
           <p>User</p>
           <p>Overall Progress</p>
         </div>
-        {studentData.map((book, index) => (
+        {users.map((book, index) => (
           <div className="result-final" key={index}>
             <div style={{ fontSize: "1.5rem", paddingLeft: "2rem" }}>
-              {book.name}
+              {book.first_name}
             </div>
 
             <div className="cirle-ins">
               <div>
-                <CircleProgress percentage={book.percentage} />
+                <CircleProgress
+                  // percentage={Number(
+                  //   book.final_results[0] ? book.final_results[0].score : 0
+                  // )}
+                  percentage={2}
+                />
               </div>
-              <p className="circle-per">{book.percentage}%</p>
+              <p className="circle-per">
+                {/* {book.final_results[0] ? book.final_results[0].score : 0}% */}
+                2
+              </p>
             </div>
           </div>
         ))}

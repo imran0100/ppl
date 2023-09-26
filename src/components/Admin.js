@@ -80,7 +80,13 @@
 
 // export default Admin;
 import React, { useState } from "react";
-import { FaUserAlt, FaFileMedical, FaRegEdit, FaBell } from "react-icons/fa";
+import {
+  FaUserAlt,
+  FaFileMedical,
+  FaRegEdit,
+  FaBell,
+  FaEye,
+} from "react-icons/fa";
 import { FaBarsProgress } from "react-icons/fa6";
 // import { useNavigate } from "react-router-dom";
 import "./Admin.css"; // Import the CSS file
@@ -100,7 +106,7 @@ function Admin() {
     navigate("/choose");
   };
   const handleEdit = () => {
-    navigate("/aaa");
+    navigate("/chooseEdit");
   };
 
   const handleProgress = () => {
@@ -108,6 +114,9 @@ function Admin() {
   };
   const handleNotification = () => {
     navigate("/adminnotifiaction");
+  };
+  const ChangeUi = () => {
+    navigate("/chooseChangeUi");
   };
   return (
     <>
@@ -124,7 +133,7 @@ function Admin() {
             <Link to="/choose" className="link-item">
               Add Question
             </Link>
-            <Link to="/aaa" className="link-item">
+            <Link to="/chooseEdit" className="link-item">
               Edit Question
             </Link>
             <Link to="/seeprogress" className="link-item">
@@ -175,7 +184,7 @@ function Admin() {
             <div style={{ color: "rgb(24 23 196)" }}>
               <FaRegEdit size={70} />
             </div>
-            <p>Edit Question</p>
+            <p>Edit and Delete Question</p>
           </div>
           <div className="admin-item item3" onClick={handleProgress}>
             {/* <div className="diamond3"></div> */}
@@ -192,6 +201,14 @@ function Admin() {
               <FaBell size={70} />
             </div>
             <p> Notification</p>
+          </div>
+          <div className="admin-item item4" onClick={ChangeUi}>
+            {/* <div className="diamond4"></div> */}
+
+            <div style={{ color: "  #be00ff" }}>
+              <FaEye size={70} />
+            </div>
+            <p> Change UI content</p>
           </div>
         </div>
       </div>

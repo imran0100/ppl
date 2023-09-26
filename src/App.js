@@ -53,6 +53,9 @@ import Notification from "./components/Notification";
 import AAA from "./components/AAA";
 import SeeStudentProgress from "./components/SeeStudentProgress";
 import AdminNotification from "./components/AdminNotification";
+import ChooseSubjectEdit from "./components/ChooseSubjectEdit";
+import Video from "./components/Video";
+import ChooseForUiChange from "./components/ChooseForUiChange";
 function App() {
   return (
     <div className="App">
@@ -63,19 +66,22 @@ function App() {
           <Route path="/signup" element={<SignUpPage />} />
 
           <Route path="/about" element={<AboutDatabasePage />} />
-          <Route path="/pricing" element={<PricingPage />} />
+          <Route path="/pricing" element={<Video />} />
           <Route path="/section2" element={<Section2 />} />
           <Route path="/section3" element={<Section3 />} />
-          <Route path="/aaa" element={<AAA />} />
 
           {/* <Route path="/dashboard" element={<Dashboard />} /> */}
 
           <Route element={<PrivateRoutes />}>
+            <Route path="/aaa/:id" element={<AAA />} />
             <Route path="/dashboard" element={<Dashboard />} />
             {/* <Route path="/tttt/:id" element={<Tttt />} /> */}
             <Route path="/progress" element={<UserProgress />} />
             <Route path="/question/:id" element={<QuestionForm />} />
             <Route path="/choose" element={<ChooseSubject />} />
+            <Route path="/chooseEdit" element={<ChooseSubjectEdit />} />
+            <Route path="/chooseChangeUi" element={<ChooseForUiChange />} />
+
             <Route path="/notification" element={<Notification />} />
             <Route path="/test/:id" element={<TestPage />} />
             <Route path="/seeprogress" element={<SeeStudentProgress />} />

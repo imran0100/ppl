@@ -115,7 +115,7 @@ const Signup = () => {
   const [errors, setErrors] = useState({});
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
-
+  const [selectedOption, setSelectedOption] = useState("");
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
@@ -155,6 +155,10 @@ const Signup = () => {
     } else if (confirmPassword !== password) {
       isValid = false;
       errors.confirmPassword = "Passwords do not match";
+    }
+    if (!selectedOption) {
+      isValid = false;
+      errors.selectedOption = "Please select an option";
     }
 
     setErrors(errors);
@@ -239,91 +243,114 @@ const Signup = () => {
       </div>
       <div className="signup-container">
         <form className="signup-form" onSubmit={handleSubmit}>
-          <div className="form-group">
-            <label>
-              Name:<span className="mandatory">*</span>
-            </label>
-            <input
-              type="text"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-            />
-            {errors.name && <span className="error">{errors.name}</span>}
+          <div>
+            <div className="form-group">
+              <label>
+                Name:<span className="mandatory">*</span>
+              </label>
+              <input
+                type="text"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+              />
+              {errors.name && <span className="error">{errors.name}</span>}
+            </div>
+            <div className="form-group">
+              <label>
+                Under which syllabus are taking your exam?:
+                <span className="mandatory">*</span>
+              </label>
+              <select
+                value={selectedOption}
+                onChange={(e) => setSelectedOption(e.target.value)}
+              >
+                <option value="">Select an option</option>
+                <option value="UK">UK</option>
+                <option value="European Union">European Union</option>
+              </select>
+              {errors.selectedOption && (
+                <span className="error">{errors.selectedOption}</span>
+              )}
+            </div>
+            <div className="form-group">
+              <label>
+                Email:<span className="mandatory">*</span>
+              </label>
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+              {errors.email && <span className="error">{errors.email}</span>}
+            </div>
+            <div className="form-group">
+              <label>
+                Password:<span className="mandatory">*</span>
+              </label>
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+              {errors.password && (
+                <span className="error">{errors.password}</span>
+              )}
+            </div>
+            <div className="form-group">
+              <label>
+                Confirm Password:<span className="mandatory">*</span>
+              </label>
+              <input
+                type="password"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+              />
+              {errors.confirmPassword && (
+                <span className="error">{errors.confirmPassword}</span>
+              )}
+            </div>
           </div>
-          <div className="form-group">
-            <label>Address:</label>
-            <input
-              type="text"
-              value={address}
-              onChange={(e) => setAddress(e.target.value)}
-            />
-            {errors.address && <span className="error">{errors.address}</span>}
+          <div>
+            <div className="form-group">
+              <label>Address:</label>
+              <input
+                type="text"
+                value={address}
+                onChange={(e) => setAddress(e.target.value)}
+              />
+              {errors.address && (
+                <span className="error">{errors.address}</span>
+              )}
+            </div>
+            <div className="form-group">
+              <label>Base Airfield:</label>
+              <input
+                type="text"
+                value={baseAirfield}
+                onChange={(e) => setBaseAirfield(e.target.value)}
+              />
+              {errors.baseAirfield && (
+                <span className="error">{errors.baseAirfield}</span>
+              )}
+            </div>
+            <div className="form-group">
+              <label>License Number:</label>
+              <input
+                type="text"
+                value={licenseNo}
+                onChange={(e) => setLicenseNo(e.target.value)}
+              />
+              {errors.licenseNo && (
+                <span className="error">{errors.licenseNo}</span>
+              )}
+            </div>
+            <button className="submit" type="submit">
+              Sign Up
+            </button>
+            <p className="signin-message">
+              Already signed up? <Link to="/login">Log in here</Link>
+            </p>
           </div>
-          <div className="form-group">
-            <label>Base Airfield:</label>
-            <input
-              type="text"
-              value={baseAirfield}
-              onChange={(e) => setBaseAirfield(e.target.value)}
-            />
-            {errors.baseAirfield && (
-              <span className="error">{errors.baseAirfield}</span>
-            )}
-          </div>
-          <div className="form-group">
-            <label>License Number:</label>
-            <input
-              type="text"
-              value={licenseNo}
-              onChange={(e) => setLicenseNo(e.target.value)}
-            />
-            {errors.licenseNo && (
-              <span className="error">{errors.licenseNo}</span>
-            )}
-          </div>
-          <div className="form-group">
-            <label>
-              Email:<span className="mandatory">*</span>
-            </label>
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-            {errors.email && <span className="error">{errors.email}</span>}
-          </div>
-          <div className="form-group">
-            <label>
-              Password:<span className="mandatory">*</span>
-            </label>
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-            {errors.password && (
-              <span className="error">{errors.password}</span>
-            )}
-          </div>
-          <div className="form-group">
-            <label>
-              Confirm Password:<span className="mandatory">*</span>
-            </label>
-            <input
-              type="password"
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
-            />
-            {errors.confirmPassword && (
-              <span className="error">{errors.confirmPassword}</span>
-            )}
-          </div>
-          <button className="submit" type="submit">
-            Sign Up
-          </button>
-          <p className="signin-message">
-            Already signed up? <Link to="/login">Log in here</Link>
-          </p>
         </form>
       </div>
     </>
