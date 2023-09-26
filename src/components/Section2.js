@@ -36,8 +36,8 @@
 import React, { useState, useEffect } from "react";
 import image from "../logo/20230712_231252 (1) (1).png";
 import "./Section2.css";
-import ReactScrollAnimation from "react-scroll-animation";
-import "animate.css/animate.min.css"; // Import the animation styles
+
+// Import the animation styles
 
 function Section2() {
   const [shouldAnimate, setShouldAnimate] = useState(false);

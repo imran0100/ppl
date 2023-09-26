@@ -242,7 +242,7 @@
 // export default HomePage;
 
 import logo from "../logo/WhatsApp Image 2023-07-12 at 9.58.35 AM.png";
-import "animate.css/animate.min.css";
+
 import BookTable from "./BookTable";
 import AboutDatabasePage from "./AboutDatabasePage";
 import PricingPage from "./PricingPage";
@@ -260,7 +260,7 @@ import PricingTable2 from "./PricingTable2";
 import PricingTable from "./PricingTable";
 import Video from "./Video";
 import AAA from "./AAA";
-import ScrollAnimation from "./ScrollAnimation";
+
 
 function HomePage() {
   const navigate = useNavigate();

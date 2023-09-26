@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./BookTable.css";
-import ReactScrollAnimation from "react-scroll-animation";
-import "animate.css/animate.min.css"; // Import the animation styles
+
 
 function BookTable() {
   const [shouldAnimate, setShouldAnimate] = useState(false);
