@@ -14,7 +14,9 @@ table {
   width: 100%;
   border-collapse: collapse;
 }
-
+tr {
+  background: linear-gradient(0deg, #8a86ff, #a2aeff);
+}
 th,
 td {
   padding: 1.2rem;
@@ -52,7 +54,9 @@ tbody tr {
   table {
     width: 100%;
   }
-
+  table input {
+    width: 6rem !important;
+  }
   th,
   td {
     padding: 10px;

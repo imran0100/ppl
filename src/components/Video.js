@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import "./VideoBackground.css"; // Import your CSS file if you have one
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 const Video = () => {
   const [shouldAnimate, setShouldAnimate] = useState(false);
   const [isProcessing, setIsProcessing] = useState(false);
+  const navigate = useNavigate();
   useEffect(() => {
     const handleScroll = () => {
       const section2Right = document.querySelector(".col-1");
@@ -42,34 +44,39 @@ const Video = () => {
   ];
 
   const checkout = async (plan) => {
-    setIsProcessing(true);
-    // const url = "http://localhost:5000/api/v1/create-subscription-checkout";
-    const url = "http://13.48.26.232:5000/api/v1/create_subscription_checkout";
-    const headers = {
-      "Content-Type": "application/json",
-    };
-    const data = { customerId: 5, plan: plan };
+    const existingData = JSON.parse(localStorage.getItem("user_322"));
 
-    try {
-      const res = await axios.post(url, data, { headers, mode: "cors" });
+    if (existingData) {
+      setIsProcessing(true);
+      // const url = "http://localhost:5000/api/v1/create-subscription-checkout";
+      const url =
+        "http://13.48.26.232:5000/api/v1/create_subscription_checkout";
+      const headers = {
+        "Content-Type": "application/json",
+      };
+      const data = { customerId: 5, plan: plan };
 
-      if (res.ok) res.json();
+      try {
+        const res = await axios.post(url, data, { headers, mode: "cors" });
 
-      const { session } = res.data;
-      console.log(res.data.data.url);
-      console.log(session, "ygughycvgcg");
-      // console.log(session.url);
-      window.location = res.data.data.url;
-      const existingData = JSON.parse(localStorage.getItem("user_322"));
-      const updatedData = { ...existingData, sessionId: session.id };
-      localStorage.setItem("user_322", JSON.stringify(updatedData));
-      // window.location = session.url;
-    } catch (e) {
-      console.log(e.error);
-    } finally {
-      // Reset loading state
-    }
-    console.log("fkasfklasas");
+        if (res.ok) res.json();
+
+        const { session } = res.data;
+        console.log(res.data.data.url);
+        console.log(session, "ygughycvgcg");
+        // console.log(session.url);
+        window.location = res.data.data.url;
+
+        const updatedData = { ...existingData, sessionId: res.data.data.id };
+        localStorage.setItem("user_322", JSON.stringify(updatedData));
+        // window.location = session.url;
+      } catch (e) {
+        console.log(e.error);
+      } finally {
+        // Reset loading state
+      }
+      console.log("fkasfklasas");
+    } else navigate("/login");
   };
 
   return (
@@ -92,7 +99,7 @@ const Video = () => {
                 <div className="card" key={index}>
                   <h2 className="card_title">{pricingItem.title}</h2>
                   <p className="pricing">
-                    <span style={{ fontSize: "3rem" }}>$</span>
+                    <span style={{ fontSize: "3rem" }}>£</span>
                     {pricingItem.pricing}
                     <span className="small">/per month</span>
                   </p>

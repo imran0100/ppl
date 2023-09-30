@@ -32,10 +32,11 @@ function SeeStudentProgress() {
         console.error("Error fetching total result data:", error);
       });
   }, []);
+  console.log(totalResult, "hfsajhjas");
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
-  console.log(totalResult[2].score, "daaaaaaaaaaaaaaaaaaa");
+
   const handleLogout = () => {
     localStorage.removeItem("user_322");
     navigate("/");

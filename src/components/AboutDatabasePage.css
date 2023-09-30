@@ -36,12 +36,16 @@ section h2 {
   border-radius: 5px;
   text-align: left;
 }
-
+.col-1 input {
+  margin-bottom: 0.5rem;
+}
 .col-1 h3 {
   text-align: center;
   padding: 1rem;
 }
-
+.col-2 {
+  width: 27rem;
+}
 .cl {
   position: relative;
   padding: 1.5rem;
@@ -49,6 +53,9 @@ section h2 {
   border-right: 0.3px solid gray;
   line-height: 1.5;
   font-size: 1.2rem;
+}
+.cl textarea {
+  height: 100px;
 }
 .icon {
   position: absolute;
@@ -72,6 +79,9 @@ section h2 {
   section {
     padding: 0;
     margin-top: 3rem;
+  }
+  .cl {
+    width: 22rem !important;
   }
 }
 @media screen and (max-width: 400px) {

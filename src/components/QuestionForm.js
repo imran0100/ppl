@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./QuestionForm.css"; // Import the CSS file
 import axios from "axios";
-import { useParams, useNavigate, Link } from "react-router-dom";
+import { useParams, useNavigate, Link, useLocation } from "react-router-dom";
 import logo from "../logo/WhatsApp Image 2023-07-12 at 9.58.35 AM.png";
 const QuestionForm = () => {
   const [question, setQuestion] = useState("");
@@ -13,7 +13,11 @@ const QuestionForm = () => {
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
   const { id } = useParams();
-
+  const location = useLocation();
+  const selectedOption = new URLSearchParams(location.search).get(
+    "selectedOption"
+  );
+  console.log(selectedOption);
   const handleLogout = () => {
     localStorage.removeItem("user_322");
     navigate("/");

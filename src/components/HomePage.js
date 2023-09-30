@@ -261,12 +261,12 @@ import PricingTable from "./PricingTable";
 import Video from "./Video";
 import AAA from "./AAA";
 
-
 function HomePage() {
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const [shouldAnimate, setShouldAnimate] = useState(false);
-
+  let user = JSON.parse(localStorage.getItem("user_322"));
+  // console.log(user.isAdmin);
   useEffect(() => {
     setShouldAnimate(true);
   }, []);
@@ -275,7 +275,9 @@ function HomePage() {
   };
   const handleLogin = () => {
     localStorage.getItem("user_322")
-      ? navigate("/dashboard")
+      ? user.isAdmin
+        ? navigate("/admin")
+        : navigate("/dashboard")
       : navigate("/login");
   };
   const handleSignup = () => {
@@ -305,9 +307,19 @@ function HomePage() {
             </Link>
 
             {localStorage.getItem("user_322") ? (
-              <Link to="/dashboard" className="link-item">
-                {localStorage.getItem("user_322") ? "GO TO DASHBOARD" : "LOGIN"}
-              </Link>
+              user.isAdmin ? (
+                <Link to="/admin" className="link-item">
+                  {localStorage.getItem("user_322")
+                    ? "GO TO DASHBOARD"
+                    : "LOGIN"}
+                </Link>
+              ) : (
+                <Link to="/dashboard" className="link-item">
+                  {localStorage.getItem("user_322")
+                    ? "GO TO DASHBOARD"
+                    : "LOGIN"}
+                </Link>
+              )
             ) : (
               <Link to="/login" className="link-item">
                 {localStorage.getItem("user_322") ? "GO TO DASHBOARD" : "LOGIN"}

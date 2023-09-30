@@ -234,7 +234,17 @@ nav img:hover {
   flex-direction: column;
   cursor: pointer;
 }
+.ChangeUi {
+  border: none;
+  padding: 1rem;
+  border-radius: 9px;
+  background: linear-gradient(0deg, #97a5ff 0%, #ffffff 87%);
+}
+.ChangeUi:hover {
+  background: linear-gradient(0deg, #aeb7ef 0%, #cfeaff 87%);
 
+  cursor: pointer;
+}
 .bar {
   width: 30px;
   height: 3px;

@@ -1,73 +1,28 @@
-// import React from "react";
-// import "./ChangeHomePageContent.css"; // Import your CSS file for styling
+import React, { useState } from "react";
 
-// function ChangeHomePageContent() {
-//   return (
-//     <div className="centered-container">
-//       <div className="blur-background">
-//         <div className="content">
-//           <div className="main-heading">Main Heading</div>
-//           <input />
-//         </div>
-//       </div>
-//     </div>
-//   );
-// }
+function ChangeHomePageContent() {
+  const [data, setData] = useState({
+    header: "Latest Version Of EASA 2016 And 2021 Question Bank",
+    description:
+      "Our database contains high percentage of REAL EXAM QUESTIONS. Students mark questions after their examination, then we eliminate questionsaccording to feedback.",
+  });
 
-// export default ChangeHomePageContent;
-const subjects = [
-  {
-    id: 1,
-    name: "Air Law",
-    data1: "YES",
-    data2: "YES",
-  },
-  {
-    id: 2,
-    name: "Principles of Flight",
-    data1: "YES",
-    data2: "YES",
-  },
-  {
-    id: 3,
-    name: "Operational procedures",
-    data1: "YES",
-    data2: "YES",
-  },
-  {
-    id: 4,
-    name: "Meteorology",
-    data1: "YES",
-    data2: "YES",
-  },
-  {
-    id: 5,
-    name: "Communications",
-    data1: "YES",
-    data2: "YES",
-  },
-  {
-    id: 6,
-    name: "Flight planning and performance",
-    data1: "YES",
-    data2: "YES",
-  },
-  {
-    id: 7,
-    name: "Navigation",
-    data1: "YES",
-    data2: "YES",
-  },
-  {
-    id: 8,
-    name: "Human performance and limitations",
-    data1: "YES",
-    data2: "YES",
-  },
-  {
-    id: 9,
-    name: "Aircraft general knowledge",
-    data1: "YES",
-    data2: "YES",
-  },
-];
+  return (
+    <section className="section">
+      <div className="side active">
+        <input onChange={(e) => setData(e.target.value)} value={data.header} />
+        <textarea
+          onChange={(e) => setData(e.target.value)}
+          style={{ height: "55px" }}
+          value={data.description}
+        />
+        <div className="div-button">
+          <button>Change Content</button>
+        </div>
+      </div>
+      <div className="side-content"></div>
+    </section>
+  );
+}
+
+export default ChangeHomePageContent;

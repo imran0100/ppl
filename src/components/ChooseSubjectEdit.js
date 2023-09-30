@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from "react";
 import "./Dashboard.css";
 import axios from "axios";
+
 // import { useNavigate } from "react-router-dom";
 import { useNavigate, Link } from "react-router-dom";
 import logo from "../logo/WhatsApp Image 2023-07-12 at 9.58.35 AM.png";
 function ChooseSubjectEdit() {
   const [subjects, setSubjects] = useState([]);
+  const [selectedOption, setSelectedOption] = useState("");
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -32,7 +35,11 @@ function ChooseSubjectEdit() {
   };
   const navigate = useNavigate();
   const handleClick = (id) => {
-    navigate(`/aaa/${id}`);
+    if (selectedOption) {
+      navigate(`/aaa/${id}?selectedOption=${selectedOption}`);
+    } else {
+      setError(true); // Set error state to true if selectedOption is empty
+    }
   };
 
   return (
@@ -66,14 +73,30 @@ function ChooseSubjectEdit() {
         </nav>
       </div>
       <div className="book-table1">
+        <div style={{ textAlign: "center" }}>
+          <select
+            value={selectedOption}
+            onChange={(e) => {
+              setSelectedOption(e.target.value);
+              setError(false); // Clear error when user selects an option
+            }}
+          >
+            <option value="">Choose syllabus to Edit Question</option>
+            <option value="UK">UK</option>
+            <option value="European Union">European Union</option>
+          </select>
+        </div>
+        <div style={{ textAlign: "center", color: "red" }}>
+          {error && <p>Please select an option before proceeding.</p>}
+        </div>
         <table>
           <thead>
             <tr>
-              <th> Select a Subject for edit and delete questions </th>
+              <th>Select a Subject for edit and delete questions</th>
             </tr>
           </thead>
           <tbody>
-            {subjects.map((book, index) => (
+            {subjects.map((book) => (
               <tr key={book.sub_id} onClick={() => handleClick(book.sub_id)}>
                 <td>{book.sub_name}</td>
               </tr>

@@ -40,12 +40,16 @@
   /* cursor: pointer; */
   color: white;
 }
-
+.col textarea {
+  height: 100px;
+}
 .col h3 {
   text-align: center;
   padding: 1rem;
 }
-
+.col input {
+  margin-bottom: 0.5rem;
+}
 .col p {
   padding: 1.5rem;
   border-left: 0.3px solid gray;

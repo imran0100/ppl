@@ -5,6 +5,9 @@ import { useNavigate, Link } from "react-router-dom";
 import logo from "../logo/WhatsApp Image 2023-07-12 at 9.58.35 AM.png";
 function ChooseSubject() {
   const [subjects, setSubjects] = useState([]);
+  const [syllabus, setSyllabus] = useState("");
+  const [selectedOption, setSelectedOption] = useState("");
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -33,7 +36,9 @@ function ChooseSubject() {
   };
   // const navigate = useNavigate();
   const handleClick = (id) => {
-    navigate(`/question/${id}`);
+    selectedOption
+      ? navigate(`/question/${id}?selectedOption=${selectedOption}`)
+      : setError(true);
   };
 
   return (
@@ -67,6 +72,19 @@ function ChooseSubject() {
         </nav>
       </div>
       <div className="book-table1">
+        <div style={{ textAlign: "center" }}>
+          <select
+            value={selectedOption}
+            onChange={(e) => setSelectedOption(e.target.value)}
+          >
+            <option value="">Choose syllabus to add Question</option>
+            <option value="UK">UK</option>
+            <option value="European Union">European Union</option>
+          </select>
+          <div style={{ textAlign: "center", color: "red" }}>
+            {error && <p>Please select an option before proceeding.</p>}
+          </div>
+        </div>
         <table>
           <thead>
             <tr>

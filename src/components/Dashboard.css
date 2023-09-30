@@ -38,6 +38,15 @@
 .book-table1 {
   padding: 2rem 6rem 0rem 6rem;
 }
+.book-table1 select {
+  width: 50%;
+  height: 60px;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  background: linear-gradient(180deg, #a6bde4, white);
+}
 .notify {
   background: linear-gradient(180deg, #ffc710, #ff7300) !important;
 }

@@ -9,9 +9,14 @@ import image6 from "../logo/Screenshot 2023-09-25 115314.png";
 import { useNavigate, Link } from "react-router-dom";
 import logo from "../logo/WhatsApp Image 2023-07-12 at 9.58.35 AM.png";
 import ChangeHomePageContent from "./ChangeHomePageContent";
+import ChangeBookTableContent from "./ChangeBookTableContent";
+import ChangeAboutDatabase from "./ChangeAboutDatabase";
+import ChangePricingPage from "./ChangePricingPage";
+import ChangeWhatsDifferentPage from "./ChangeWhatsDifferentPage";
+import ChangeAmazingFeature from "./ChangeAmazingFeature";
 function ChooseForUiChange() {
   const [isOpen, setIsOpen] = useState(false);
-  const [homeEdit, setHomeEdit] = useState(false);
+  // const [homeEdit, setHomeEdit] = useState(false);
   const navigate = useNavigate();
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -50,7 +55,7 @@ function ChooseForUiChange() {
           </div>
         </nav>
       </div>
-
+      {/* 
       <div className="fullscreen-grid">
         <div className="row1">
           <div className="image">
@@ -78,8 +83,13 @@ function ChooseForUiChange() {
             <img src={image5} alt="Image 6" />
           </div>
         </div>
-      </div>
-      {homeEdit && <ChangeHomePageContent />}
+      </div> */}
+      <ChangeHomePageContent />
+      <ChangeBookTableContent />
+      <ChangeAboutDatabase />
+      <ChangePricingPage />
+      <ChangeWhatsDifferentPage />
+      <ChangeAmazingFeature />
     </>
   );
 }

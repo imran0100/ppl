@@ -490,7 +490,7 @@
 
 import React, { useState, useEffect } from "react";
 import "./AAA.css";
-import { useParams, useNavigate, Link } from "react-router-dom";
+import { useParams, useNavigate, Link, useLocation } from "react-router-dom";
 import logo from "../logo/WhatsApp Image 2023-07-12 at 9.58.35 AM.png";
 import axios from "axios";
 const AAA = () => {
@@ -499,7 +499,11 @@ const AAA = () => {
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
   const { id } = useParams();
-
+  const location = useLocation();
+  const selectedOption = new URLSearchParams(location.search).get(
+    "selectedOption"
+  );
+  console.log(id, selectedOption, "test bodth");
   useEffect(() => {
     // Fetch data from the API
     fetch("http://13.48.26.232:5000/api/v1/getallquestion")

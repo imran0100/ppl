@@ -86,8 +86,8 @@ function App() {
             <Route path="/test/:id" element={<TestPage />} />
             <Route path="/seeprogress" element={<SeeStudentProgress />} />
             <Route path="/adminnotifiaction" element={<AdminNotification />} />
+            <Route path="/admin" element={<Admin />} />
           </Route>
-          <Route path="/admin" element={<Admin />} />
 
           <Route path="/login" element={<LoginPage />} />
           <Route path="/success" element={<Success />} />
