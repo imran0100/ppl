@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
 import "./BookTable.css";
-
-
+import axios from "axios";
 function BookTable() {
   const [shouldAnimate, setShouldAnimate] = useState(false);
-
+  const [books, setBooks] = useState([]);
   useEffect(() => {
     const handleScroll = () => {
       const section2Right = document.querySelector("tr");
@@ -21,62 +20,19 @@ function BookTable() {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
-  const books = [
-    {
-      id: 1,
-      name: "Air Law",
-      data1: "YES",
-      data2: "YES",
-    },
-    {
-      id: 2,
-      name: "Principles of Flight",
-      data1: "YES",
-      data2: "YES",
-    },
-    {
-      id: 3,
-      name: "Operational procedures",
-      data1: "YES",
-      data2: "YES",
-    },
-    {
-      id: 4,
-      name: "Meteorology",
-      data1: "YES",
-      data2: "YES",
-    },
-    {
-      id: 5,
-      name: "Communications",
-      data1: "YES",
-      data2: "YES",
-    },
-    {
-      id: 6,
-      name: "Flight planning and performance",
-      data1: "YES",
-      data2: "YES",
-    },
-    {
-      id: 7,
-      name: "Navigation",
-      data1: "YES",
-      data2: "YES",
-    },
-    {
-      id: 8,
-      name: "Human performance and limitations",
-      data1: "YES",
-      data2: "YES",
-    },
-    {
-      id: 9,
-      name: "Aircraft general knowledge",
-      data1: "YES",
-      data2: "YES",
-    },
-  ];
+  useEffect(() => {
+    fetchData();
+  }, []);
+  const fetchData = async () => {
+    try {
+      const response = await axios.get(
+        "http://13.48.26.232:5000/api/v1/get_allsubjectlist"
+      );
+      setBooks(response.data.data);
+    } catch (error) {
+      console.error("Error fetching data:", error.message);
+    }
+  };
 
   return (
     // <ReactScrollAnimation animateIn="zoomIn" animateOnce={true}>
@@ -93,9 +49,9 @@ function BookTable() {
           <tbody>
             {books.map((book, index) => (
               <tr key={index}>
-                <td>{book.name}</td>
-                <td style={{ textAlign: "center" }}>{book.data1}</td>
-                <td style={{ textAlign: "center" }}>{book.data2}</td>
+                <td>{book.sub_name}</td>
+                <td style={{ textAlign: "center" }}>{book.EASA_2016}</td>
+                <td style={{ textAlign: "center" }}>{book.EASA_2021}</td>
               </tr>
             ))}
           </tbody>

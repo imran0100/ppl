@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 const Video = () => {
   const [shouldAnimate, setShouldAnimate] = useState(false);
   const [isProcessing, setIsProcessing] = useState(false);
+  const [data, setData] = useState([]);
   const navigate = useNavigate();
   useEffect(() => {
     const handleScroll = () => {
@@ -21,6 +22,27 @@ const Video = () => {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
+  }, []);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          "http://13.48.26.232:5000/api/v1/get_allbasic_price"
+        );
+        console.log(response.data.data, "dahsihdia");
+        setData(response.data.data);
+      } catch (error) {
+        if (error.response && error.response.status === 404) {
+          // Handle 404 error here
+          console.error("Data not found on the server.");
+        } else {
+          // Handle other errors
+          console.error("Error fetching data:", error.message);
+        }
+      }
+    };
+
+    fetchData();
   }, []);
   const pricingData = [
     {
@@ -95,7 +117,7 @@ const Video = () => {
         <div className="main">
           <div className="container">
             <div className={`grid ${shouldAnimate ? "active" : ""}`}>
-              {pricingData.map((pricingItem, index) => (
+              {data.map((pricingItem, index) => (
                 <div className="card" key={index}>
                   <h2 className="card_title">{pricingItem.title}</h2>
                   <p className="pricing">
@@ -106,7 +128,7 @@ const Video = () => {
                   <p>{pricingItem.discount}</p>
                   <hr />
                   <ul className="features">
-                    {pricingItem.features.map((feature, index) => (
+                    {pricingItem.feature.map((feature, index) => (
                       <li key={index}>{feature}</li>
                     ))}
                   </ul>

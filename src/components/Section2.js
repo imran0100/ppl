@@ -36,12 +36,33 @@
 import React, { useState, useEffect } from "react";
 import image from "../logo/20230712_231252 (1) (1).png";
 import "./Section2.css";
-
+import axios from "axios";
 // Import the animation styles
 
 function Section2() {
   const [shouldAnimate, setShouldAnimate] = useState(false);
+  const [data, setData] = useState({});
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          "http://13.48.26.232:5000/api/v1/get_allcontent"
+        );
 
+        setData(response.data.data[1]);
+      } catch (error) {
+        if (error.response && error.response.status === 404) {
+          // Handle 404 error here
+          console.error("Data not found on the server.");
+        } else {
+          // Handle other errors
+          console.error("Error fetching data:", error.message);
+        }
+      }
+    };
+
+    fetchData();
+  }, []);
   useEffect(() => {
     const handleScroll = () => {
       const section2Right = document.querySelector(".section2-right");
@@ -73,20 +94,8 @@ function Section2() {
 
       {/* <div className="section2-right"> */}
       <div className={`section2-right ${shouldAnimate ? "active" : ""}`}>
-        <h1 className="section2-heading">What Is The Difference?</h1>
-        <p>
-          Apart many European countries, Sweden, Bulgaria, Lithuania, Hungary,
-          Greece, Czech Republic, Italy,Portugal, Austria,Germany, Slovakia,
-          Slovenia, Crotia,France, Iceland, Belgium, Denmark, Serbia,Spain
-          already use ECQB7, possibly also UK; Poland also started to use ECQB
-          7.0 since June 2020. EASA 2021 Database has been released! We strongly
-          recommend checking with your flight school or CAA and find out which
-          database is used for your official exam. EASA has removed a lot of
-          questions for creating the new database but they have also added new
-          chapters. There will be added more new questions, so the difference in
-          question numbers will not be so big. New questions have been added to
-          the new syllabus after receiving students feedback.
-        </p>
+        <h1 className="section2-heading">{data.heading}</h1>
+        <p>{data.description}</p>
       </div>
     </div>
   );

@@ -260,12 +260,36 @@ import PricingTable2 from "./PricingTable2";
 import PricingTable from "./PricingTable";
 import Video from "./Video";
 import AAA from "./AAA";
-
+import axios from "axios";
 function HomePage() {
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const [shouldAnimate, setShouldAnimate] = useState(false);
   let user = JSON.parse(localStorage.getItem("user_322"));
+  const [data, setData] = useState({});
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          "http://13.48.26.232:5000/api/v1/get_allcontent"
+        );
+
+        setData(response.data.data[0]);
+      } catch (error) {
+        if (error.response && error.response.status === 404) {
+          // Handle 404 error here
+          console.error("Data not found on the server.");
+        } else {
+          // Handle other errors
+          console.error("Error fetching data:", error.message);
+        }
+      }
+    };
+
+    fetchData();
+  }, []);
+
   // console.log(user.isAdmin);
   useEffect(() => {
     setShouldAnimate(true);
@@ -335,12 +359,8 @@ function HomePage() {
       </div>
       <section className="section">
         <div className={`side ${shouldAnimate ? "active" : ""}`}>
-          <h1>Latest Version Of EASA 2016 And 2021 Question Bank</h1>
-          <p>
-            Our database contains high percentage of REAL EXAM QUESTIONS.
-            Students mark questions after their examination, then we eliminate
-            questions according to feedback.
-          </p>
+          <h1>{data.heading}</h1>
+          <p>{data.description}</p>
           <div className="div-button">
             <button onClick={handleLogin}>
               {localStorage.getItem("user_322") ? "Go to Dashboard" : "Login"}

@@ -1,9 +1,31 @@
 import React, { useState, useEffect } from "react";
 import "./Section3.css";
-
+import axios from "axios";
 function Section3() {
   const [shouldAnimate, setShouldAnimate] = useState(false);
+  const [data, setData] = useState({});
 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          "http://13.48.26.232:5000/api/v1/get_all_amazing_fearture"
+        );
+        console.log(response.data.data[0]);
+        setData(response.data.data[0]);
+      } catch (error) {
+        if (error.response && error.response.status === 404) {
+          // Handle 404 error here
+          console.error("Data not found on the server.");
+        } else {
+          // Handle other errors
+          console.error("Error fetching data:", error.message);
+        }
+      }
+    };
+
+    fetchData();
+  }, []);
   useEffect(() => {
     const handleScroll = () => {
       const section2Right = document.querySelector(".section3");
@@ -22,50 +44,32 @@ function Section3() {
   }, []);
   return (
     <section className="section3">
-      <h2 className={`${shouldAnimate ? "active" : ""}`}>Amazing Features</h2>
-      <p>We’ve got a lot of amazing and cool features.</p>
+      <h2 className={`${shouldAnimate ? "active" : ""}`}>{data.heading}</h2>
+      <p>{data.description}</p>
       <div className="row">
         <div className="col">
-          <h3>Updated Database</h3>
-          <p>
-            Latest EASA2016 and EASA2021 Database for ATPL exams. Updated
-            database with student feedback.
-          </p>
+          <h3>{data.sub_head1}</h3>
+          <p>{data.sub_description1}</p>
         </div>
         <div className="col">
-          <h3>Real Exam Questions</h3>
-          <p>
-            Students mark questions after the real examination. Marked as 'seen
-            on the real exam' property is available in the question details.
-          </p>
+          <h3>{data.sub_head2}</h3>
+          <p>{data.sub_description2}</p>
         </div>
         <div className="col">
-          <h3>Unlimited Tests</h3>
-          <p>
-            AtplQuestions enables you to run unlimited numbers of practice tests
-            from EASA ECQB Database.
-          </p>
+          <h3>{data.sub_head3}</h3>
+          <p>{data.sub_description3}</p>
         </div>
         <div className="col">
-          <h3>Explanations</h3>
-          <p>
-            Explanations are prepared by professionals on the relevant topic and
-            helps you to have a better understanding of the question.
-          </p>
+          <h3>{data.sub_head4}</h3>
+          <p>{data.sub_description4}</p>
         </div>
         <div className="col">
-          <h3>PayPal Integration</h3>
-          <p>
-            PAYPAL integration is completed. You can purchase package via
-            PayPal.
-          </p>
+          <h3>{data.sub_head5}</h3>
+          <p>{data.sub_description5}</p>
         </div>
         <div className="col">
-          <h3>LMS</h3>
-          <p>
-            Special Interface for ATOs. Assigning customize tests to students
-            from the database.
-          </p>
+          <h3>{data.sub_head6}</h3>
+          <p>{data.sub_description6}</p>
         </div>
       </div>
     </section>
