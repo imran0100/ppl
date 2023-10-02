@@ -284,15 +284,47 @@ const TestPage = () => {
   const [resultData, setResultData] = useState([]);
   const [submitted, setSubmitted] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const [subscribed, setSubscribed] = useState(false);
   const { id } = useParams();
   const navigate = useNavigate();
   console.log(id, "id check");
+  let user = JSON.parse(localStorage.getItem("user_322"));
+
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
   useEffect(() => {
     fetchQuestions();
   }, []);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          `http://13.48.26.232:5000/api/vi/getsession_details/${user.userId}`
+        );
+        let subscriptionData = response.data.data;
+        if (subscriptionData) {
+          const currentDate = new Date();
+          const planStartDate = new Date(subscriptionData.planStartDate);
+          const planEndDate = new Date(subscriptionData.planEndDate);
+
+          if (
+            subscriptionData.subscription_status === "subscription" &&
+            currentDate >= planStartDate &&
+            currentDate <= planEndDate
+          ) {
+            setSubscribed(true);
+          }
+        }
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   useEffect(() => {
     if (selectedAnswer !== "") {
       handleNextQuestion();
@@ -304,7 +336,9 @@ const TestPage = () => {
         "http://13.48.26.232:5000/api/v1/getallquestion"
       );
       const filteredQuestions = response.data.data.filter(
-        (ques) => ques.sub_id === Number(id)
+        (ques) =>
+          ques.sub_id === Number(id) &&
+          user.question_type === ques.question_type
       );
       setQuestions(filteredQuestions);
     } catch (error) {
@@ -312,7 +346,7 @@ const TestPage = () => {
     }
   };
 
-  console.log("test", score);
+  console.log("test 11111", subscribed.message);
   const handleAnswerSelect = (answer) => {
     setSelectedAnswer(answer);
   };
@@ -335,14 +369,16 @@ const TestPage = () => {
     setResultData((prevResultData) => [...prevResultData, questionData]);
 
     setSelectedAnswer("");
-    const sub = JSON.parse(localStorage.getItem("user_322"));
-    !sub.subscription && navigate("/pricing");
+    // const sub = JSON.parse(localStorage.getItem("user_322"));
+    !subscribed && navigate("/pricing");
+
     setCurrentQuestion(currentQuestion + 1);
     if (currentQuestion === questions.length - 1) {
       // If it's the last question, automatically submit the test
       handleSubmit();
     }
   };
+  console.log("faishfaisjfskajkfkasf", subscribed);
   const handleSubmit = () => {
     setSubmitted(true);
   };
@@ -354,7 +390,6 @@ const TestPage = () => {
       setCurrentQuestion(questionNumber);
     }
   };
-  let user = JSON.parse(localStorage.getItem("user_322"));
   const resultDataApi = {
     userId: user.userId,
     sub_id: Number(id),

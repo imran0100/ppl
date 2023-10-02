@@ -236,7 +236,7 @@ nav img:hover {
 }
 .ChangeUi {
   border: none;
-  padding: 1rem;
+  padding: 0.5rem;
   border-radius: 9px;
   background: linear-gradient(0deg, #97a5ff 0%, #ffffff 87%);
 }

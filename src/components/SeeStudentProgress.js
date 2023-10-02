@@ -55,7 +55,11 @@ function SeeStudentProgress() {
     { name: "Jessica", percentage: 70.2 },
   ];
   const navigate = useNavigate();
-  console.log(users, totalResult);
+
+  const handleClick = (id) => {
+    navigate(`/individual/${id}`);
+  };
+
   return (
     <>
       {" "}
@@ -124,17 +128,13 @@ function SeeStudentProgress() {
 
             <div className="cirle-ins">
               <div>
-                <CircleProgress
-                  // percentage={Number(
-                  //   book.final_results[0] ? book.final_results[0].score : 0
-                  // )}
-                  percentage={2}
-                />
+                <button
+                  onClick={() => handleClick(book.userId)}
+                  className="ChangeUi"
+                >
+                  See overall progress
+                </button>
               </div>
-              <p className="circle-per">
-                {/* {book.final_results[0] ? book.final_results[0].score : 0}% */}
-                2
-              </p>
             </div>
           </div>
         ))}

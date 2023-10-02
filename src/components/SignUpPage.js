@@ -180,6 +180,7 @@ const Signup = () => {
         licenseNo: licenseNo,
         email: email,
         password: password,
+        question_type: selectedOption,
       };
 
       axios

@@ -56,6 +56,7 @@ import AdminNotification from "./components/AdminNotification";
 import ChooseSubjectEdit from "./components/ChooseSubjectEdit";
 import Video from "./components/Video";
 import ChooseForUiChange from "./components/ChooseForUiChange";
+import SeeUserIndividual from "./components/SeeUserIndividual";
 function App() {
   return (
     <div className="App">
@@ -84,6 +85,8 @@ function App() {
 
             <Route path="/notification" element={<Notification />} />
             <Route path="/test/:id" element={<TestPage />} />
+            <Route path="/individual/:id" element={<SeeUserIndividual />} />
+
             <Route path="/seeprogress" element={<SeeStudentProgress />} />
             <Route path="/adminnotifiaction" element={<AdminNotification />} />
             <Route path="/admin" element={<Admin />} />

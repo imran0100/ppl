@@ -10,6 +10,7 @@
   opacity: 1;
   transform: scale(1);
 }
+
 table {
   width: 100%;
   border-collapse: collapse;
@@ -54,8 +55,14 @@ tbody tr {
   table {
     width: 100%;
   }
-  table input {
-    width: 6rem !important;
+  .td-input {
+    width: 3rem !important;
+  }
+  .section-heading {
+    width: 60% !important;
+  }
+  .align {
+    width: 7rem !important;
   }
   th,
   td {

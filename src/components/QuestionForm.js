@@ -64,6 +64,7 @@ const QuestionForm = () => {
         qustion_name: question,
         options,
         correct_answer: correctAnswer,
+        question_type: selectedOption,
       };
       //http://13.127.37.70:5000/api/v1/createquestion//s
       // Make an API call to send data to the backend

@@ -115,7 +115,7 @@
 
 // export default ChangePricingPage;
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios"; // You may need to install Axios if you haven't already
 import "./VideoBackground.css";
 // Component for displaying a Pricing Item
@@ -126,7 +126,7 @@ function PricingItem({ data, index, onUpdate, onBuyNowClick }) {
     updatedData[index][property] = newValue;
     onUpdate(updatedData);
   };
-
+  console.log(index, "hii");
   return (
     <div className="card">
       {/* Input field for the title */}
@@ -157,17 +157,17 @@ function PricingItem({ data, index, onUpdate, onBuyNowClick }) {
 
       {/* List of features */}
       <ul className="features">
-        {data[index].features.map((feature, featureIndex) => (
+        {data[index].feature.map((item, featureIndex) => (
           // Input fields for each feature
           <input
             style={{ marginBottom: ".3rem" }}
             key={featureIndex}
-            value={feature}
+            value={item}
             onChange={(e) =>
-              handleChange("features", [
-                ...data[index].features.slice(0, featureIndex),
+              handleChange("feature", [
+                ...data[index].feature.slice(0, featureIndex),
                 e.target.value,
-                ...data[index].features.slice(featureIndex + 1),
+                ...data[index].feature.slice(featureIndex + 1),
               ])
             }
           />
@@ -183,30 +183,31 @@ function PricingItem({ data, index, onUpdate, onBuyNowClick }) {
 
 function App() {
   // Initial data
-  const initialData = [
-    {
-      title: "Basic",
-      pricing: "99",
-      discount: "Save $9",
-      features: ["One account", "Unlimited songs", "Customized playlist"],
-    },
-    {
-      title: "Pro",
-      pricing: "129",
-      discount: "Save $15",
-      features: ["One account", "Unlimited songs", "Customized playlist"],
-    },
-    {
-      title: "Ultimate",
-      pricing: "149",
-      discount: "Save $25",
-      features: ["Six accounts", "Unlimited songs", "Customized playlist"],
-    },
-  ];
 
   // State to hold the pricing data
-  const [data, setData] = useState(initialData);
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          "http://13.48.26.232:5000/api/v1/get_allbasic_price"
+        );
+        console.log(response.data.data, "dahsihdia");
+        setData(response.data.data);
+      } catch (error) {
+        if (error.response && error.response.status === 404) {
+          // Handle 404 error here
+          console.error("Data not found on the server.");
+        } else {
+          // Handle other errors
+          console.error("Error fetching data:", error.message);
+        }
+      }
+    };
 
+    fetchData();
+  }, []);
+  console.log("Data111", data);
   // Function to update the pricing data
   const handleDataUpdate = (newData) => {
     setData(newData);
@@ -219,20 +220,23 @@ function App() {
       title: item.title,
       pricing: item.pricing,
       discount: item.discount,
-      features: item.features,
+      feature: item.feature,
     };
 
     // Perform the PUT request here
-    // axios
-    //   .put("your_api_endpoint_here", requestData)
-    //   .then((response) => {
-    //     // Handle success, e.g., show a success message
-    //     console.log("Data updated successfully:", response.data);
-    //   })
-    //   .catch((error) => {
-    //     // Handle error, e.g., show an error message
-    //     console.error("Error updating data:", error);
-    //   });
+    axios
+      .put(
+        `http://13.48.26.232:5000/api/v1/update_basic_price/${item.price_id}`,
+        requestData
+      )
+      .then((response) => {
+        // Handle success, e.g., show a success message
+        console.log("Data updated successfully:", response.data);
+      })
+      .catch((error) => {
+        // Handle error, e.g., show an error message
+        console.error("Error updating data:", error);
+      });
     console.log(requestData, "fsjajka");
   };
 

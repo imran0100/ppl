@@ -230,7 +230,7 @@ const LoginPage = () => {
     let admin = JSON.parse(localStorage.getItem("user_322"));
     console.log(admin.isAdmin, "fiksahkash");
     if (admin) {
-      if (admin.isAdmin) {
+      if (admin.roleType === "Admin") {
         navigate("/admin");
       } else {
         navigate("/dashboard");

@@ -275,7 +275,7 @@ function HomePage() {
   };
   const handleLogin = () => {
     localStorage.getItem("user_322")
-      ? user.isAdmin
+      ? user.roleType === "Admin"
         ? navigate("/admin")
         : navigate("/dashboard")
       : navigate("/login");

@@ -500,6 +500,8 @@ const AAA = () => {
   const navigate = useNavigate();
   const { id } = useParams();
   const location = useLocation();
+  let user = JSON.parse(localStorage.getItem("user_322"));
+
   const selectedOption = new URLSearchParams(location.search).get(
     "selectedOption"
   );
@@ -513,7 +515,9 @@ const AAA = () => {
         console.log(id);
         // Filter questions based on subject ID
         const filteredQuestions = data.data.filter(
-          (question) => question.sub_id === Number(id)
+          (question) =>
+            question.sub_id === Number(id) &&
+            question.question_type === selectedOption
         );
         setQuestions(filteredQuestions);
       })
