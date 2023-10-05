@@ -82,4 +82,7 @@ input {
     display: flex;
     gap: 0;
   }
+  .signup-container {
+    height: auto;
+  }
 }
