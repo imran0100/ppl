@@ -31,10 +31,10 @@ function Footer() {
           <FaTwitter className="twitter" size={30} />
           <FaInstagram className="instagram" size={30} />
         </div>
-        <p>
+        <div className="fo-design">
           Website design and developed by&nbsp;
           <a href="http://www.webexperts-studioz.com/">Web Experts Studioz</a>
-        </p>
+        </div>
         <p>Copyright © 2017 - 2023 The Ultimate PPL Guide</p>
       </div>
     </div>
