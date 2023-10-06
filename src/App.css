@@ -132,7 +132,16 @@ nav img:hover {
 .side-content {
   width: 100%;
 }
-
+.notific {
+  padding: 2rem;
+}
+.notific div {
+  background: linear-gradient(0deg, #97a5ff 0%, #ffffff 87%);
+  padding: 1rem;
+}
+.notific span {
+  color: red;
+}
 .side {
   text-align: center;
   width: 100%;

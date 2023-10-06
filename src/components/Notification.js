@@ -27,6 +27,13 @@ function Notification() {
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
+  function convertToDDMMYY(dateString) {
+    const date = new Date(dateString);
+    const year = date.getFullYear().toString().slice(-2);
+    const month = (date.getMonth() + 1).toString().padStart(2, "0");
+    const day = date.getDate().toString().padStart(2, "0");
+    return `${day}/${month}/${year}`;
+  }
   return (
     <div>
       <div id="container-nav" className={`navbar ${isOpen ? "open" : ""}`}>
@@ -70,9 +77,14 @@ function Notification() {
           </div>
         </nav>
       </div>
-      {notifications.map((notification) => (
-        <div key={notification.id}>{notification.description}</div>
-      ))}
+      <div className="notific">
+        {notifications.map((notification) => (
+          <div key={notification.id}>
+            <span> {convertToDDMMYY(notification.updatedAt)}</span>&nbsp;
+            {notification.description}
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
