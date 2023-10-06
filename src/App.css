@@ -261,8 +261,9 @@ nav img:hover {
     display: flex;
   }
   .section {
-    background-image: url("./logo/background.png");
-    opacity: 2;
+    background-image: url("./logo/backgrounf.png");
+
+    background-position: right;
   }
   .side {
     padding: 2rem;
