@@ -13,7 +13,7 @@ function SeeUserIndividual() {
   useEffect(() => {
     // Fetch data from your API here
     // Replace this with your actual API endpoint
-    fetch("http://13.48.26.232:5000/api/v1/getall_total_result")
+    fetch("https://server.theultimateppl.com/api/v1/getall_total_result")
       .then((response) => response.json())
       .then((data) => {
         console.log(data, "DATA");

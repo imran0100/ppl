@@ -508,7 +508,7 @@ const AAA = () => {
   console.log(id, selectedOption, "test bodth");
   useEffect(() => {
     // Fetch data from the API
-    fetch("http://13.48.26.232:5000/api/v1/getallquestion")
+    fetch("https://server.theultimateppl.com/api/v1/getallquestion")
       .then((response) => response.json())
       .then((data) => {
         console.log("my data", data.data);
@@ -544,7 +544,7 @@ const AAA = () => {
   // };
   const handleDelete = (index) => {
     // Make the DELETE request to the API
-    fetch(`http://13.48.26.232:5000/api/v1/deletequestion/${index}`, {
+    fetch(`https://server.theultimateppl.com/api/v1/deletequestion/${index}`, {
       method: "PUT", // Change the HTTP method to DELETE
     })
       .then((response) => {
@@ -573,7 +573,7 @@ const AAA = () => {
       correct_answer: updatedQuestion.correct_answer,
     };
 
-    const apiUrl = `http://13.48.26.232:5000/api/v1/updateQuestionDetails/${index}`;
+    const apiUrl = `https://server.theultimateppl.com/api/v1/updateQuestionDetails/${index}`;
     console.log("index", index);
     axios
       .patch(apiUrl, apiSenddata)

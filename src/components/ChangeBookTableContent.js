@@ -314,7 +314,7 @@ function ChangeBookTableContent() {
   const fetchData = async () => {
     try {
       const response = await axios.get(
-        "http://13.48.26.232:5000/api/v1/get_allsubjectlist"
+        "https://server.theultimateppl.com/api/v1/get_allsubjectlist"
       );
       setSubjectsData(response.data.data);
     } catch (error) {
@@ -333,14 +333,14 @@ function ChangeBookTableContent() {
         console.log(data);
         // If subject has an id, it already exists, so update it
         await axios.put(
-          `http://13.48.26.232:5000/api/v1/getbyId_subject/${subject.sub_id}`,
+          `https://server.theultimateppl.com/api/v1/getbyId_subject/${subject.sub_id}`,
           data
         );
       } else {
         console.log("asfjikashfkj");
         // If subject doesn't have an id, it's a new subject, so add it
         await axios.post(
-          "http://13.48.26.232:5000/api/v1/create_subject",
+          "https://server.theultimateppl.com/api/v1/create_subject",
           subject
         );
       }

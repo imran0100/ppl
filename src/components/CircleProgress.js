@@ -12,7 +12,7 @@ const CircleProgress = ({ percentage, resultDataApi }) => {
         try {
           // Make a POST request to the API endpoint and await the response
           const response = await axios.post(
-            "http://13.48.26.232:5000/api/v1/final_result",
+            "https://server.theultimateppl.com/api/v1/final_result",
             resultDataApi
           );
           console.log(response);

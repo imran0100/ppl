@@ -9,7 +9,8 @@ function Notification() {
 
   useEffect(() => {
     // Define the API URL
-    const apiUrl = "http://13.48.26.232:5000/api/v1/getAllnotification";
+    const apiUrl =
+      "https://server.theultimateppl.com/api/v1/getAllnotification";
     // const apiUrl = "https://jsonplaceholder.typicode.com/users";
     // Use Axios to make a GET request to the API
     axios

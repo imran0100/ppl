@@ -67,7 +67,7 @@ function ChangeHomePageContent() {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "http://13.48.26.232:5000/api/v1/get_allcontent"
+          "https://server.theultimateppl.com/api/v1/get_allcontent"
         );
 
         setData(response.data.data[0]);
@@ -95,7 +95,7 @@ function ChangeHomePageContent() {
 
       // Make a PUT request to update the content
       await axios.put(
-        "http://13.48.26.232:5000/api/v1/update_content/1",
+        "https://server.theultimateppl.com/api/v1/update_content/1",
         updatedData
       );
 

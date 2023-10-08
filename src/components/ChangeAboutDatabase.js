@@ -125,7 +125,7 @@ function ChangeAboutDatabase() {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "http://13.48.26.232:5000/api/v1/get_alldatabase"
+          "https://server.theultimateppl.com/api/v1/get_alldatabase"
         );
 
         setData(response.data.data[0]);
@@ -148,7 +148,7 @@ function ChangeAboutDatabase() {
     try {
       // Make a PUT request to the API endpoint and await the response
       const response = await axios.put(
-        "http://13.48.26.232:5000/api/v1/getbyId_database/1",
+        "https://server.theultimateppl.com/api/v1/getbyId_database/1",
         data
       );
 

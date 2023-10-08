@@ -11,7 +11,7 @@ function SeeStudentProgress() {
 
   useEffect(() => {
     // Fetch the first API
-    fetch("http://13.48.26.232:5000/api/v1/allusers")
+    fetch("https://server.theultimateppl.com/api/v1/allusers")
       .then((response) => response.json())
       .then((data) => {
         // Update the users state with the fetched data
@@ -22,7 +22,7 @@ function SeeStudentProgress() {
       });
 
     // Fetch the second API
-    fetch("http://13.48.26.232:5000/api/v1/getall_total_result")
+    fetch("https://server.theultimateppl.com/api/v1/getall_total_result")
       .then((response) => response.json())
       .then((data) => {
         // Update the totalResult state with the fetched data

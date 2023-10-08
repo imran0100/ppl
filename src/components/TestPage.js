@@ -35,7 +35,7 @@ const TestPage = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `http://13.48.26.232:5000/api/vi/getsession_details/${user.userId}`
+          `https://server.theultimateppl.com/api/vi/getsession_details/${user.userId}`
         );
         let subscriptionData = response.data.data;
         if (subscriptionData) {
@@ -68,7 +68,7 @@ const TestPage = () => {
     setLoading(true);
     try {
       const response = await axios.get(
-        "http://13.48.26.232:5000/api/v1/getallquestion"
+        "https://server.theultimateppl.com/api/v1/getallquestion"
       );
       const filteredQuestions = response.data.data.filter(
         (ques) =>

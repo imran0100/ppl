@@ -190,7 +190,7 @@ function App() {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "http://13.48.26.232:5000/api/v1/get_allbasic_price"
+          "https://server.theultimateppl.com/api/v1/get_allbasic_price"
         );
         console.log(response.data.data, "dahsihdia");
         setData(response.data.data);
@@ -226,7 +226,7 @@ function App() {
     // Perform the PUT request here
     axios
       .put(
-        `http://13.48.26.232:5000/api/v1/update_basic_price/${item.price_id}`,
+        `https://server.theultimateppl.com/api/v1/update_basic_price/${item.price_id}`,
         requestData
       )
       .then((response) => {

@@ -103,7 +103,7 @@ const AdminNotification = () => {
 
       try {
         const response = await axios.post(
-          "http://13.48.26.232:5000/api/v1/create_notification",
+          "https://server.theultimateppl.com/api/v1/create_notification",
           requestBody,
           {
             headers: {

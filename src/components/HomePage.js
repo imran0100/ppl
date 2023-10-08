@@ -272,7 +272,7 @@ function HomePage() {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "http://13.48.26.232:5000/api/v1/get_allcontent"
+          "https://server.theultimateppl.com/api/v1/get_allcontent"
         );
 
         setData(response.data.data[0]);

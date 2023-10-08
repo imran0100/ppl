@@ -72,7 +72,7 @@ const Video = () => {
       setIsProcessing(true);
       // const url = "http://localhost:5000/api/v1/create-subscription-checkout";
       const url =
-        "http://13.48.26.232:5000/api/v1/create_subscription_checkout";
+        "https://server.theultimateppl.com/api/v1/create_subscription_checkout";
       const headers = {
         "Content-Type": "application/json",
       };

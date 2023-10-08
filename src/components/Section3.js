@@ -9,7 +9,7 @@ function Section3() {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "http://13.48.26.232:5000/api/v1/get_all_amazing_fearture"
+          "https://server.theultimateppl.com/api/v1/get_all_amazing_fearture"
         );
         console.log(response.data.data[0]);
         setData(response.data.data[0]);

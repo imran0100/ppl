@@ -9,7 +9,7 @@ function Success() {
     async function fetchData() {
       const existing = JSON.parse(localStorage.getItem("user_322"));
       const response = await axios.post(
-        "http://13.48.26.232:5000/api/v1/payment-success",
+        "https://server.theultimateppl.com/api/v1/payment-success",
         {
           sessionId: existing.sessionId,
           userId: existing.userId,

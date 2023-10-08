@@ -68,7 +68,7 @@ const QuestionForm = () => {
       };
       //http://13.127.37.70:5000/api/v1/createquestion//s
       // Make an API call to send data to the backend
-      const apiUrl = "http://13.48.26.232:5000/api/v1/createquestion";
+      const apiUrl = "https://server.theultimateppl.com/api/v1/createquestion";
 
       // Make the API call using Axios
 
