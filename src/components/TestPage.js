@@ -17,6 +17,8 @@ const TestPage = () => {
   const [submitted, setSubmitted] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [subscribed, setSubscribed] = useState(false);
+  const [loading, setLoading] = useState(false);
+
   const { id } = useParams();
   const navigate = useNavigate();
   console.log(id, "id check");
@@ -63,6 +65,7 @@ const TestPage = () => {
     }
   }, [selectedAnswer]);
   const fetchQuestions = async () => {
+    setLoading(true);
     try {
       const response = await axios.get(
         "http://13.48.26.232:5000/api/v1/getallquestion"
@@ -73,6 +76,7 @@ const TestPage = () => {
           user.question_type === ques.question_type
       );
       setQuestions(filteredQuestions);
+      setLoading(false);
     } catch (error) {
       console.log(error);
     }
@@ -114,8 +118,15 @@ const TestPage = () => {
   const handleSubmit = () => {
     setSubmitted(true);
   };
+  if (loading) {
+    return <div className="loading">Loading...</div>;
+  }
   if (questions.length === 0) {
-    return <div>Loading...</div>;
+    return (
+      <div className="loading">
+        Stay tuned! We'll be adding questions for this subject shortly.
+      </div>
+    );
   }
   const handleQuestionChange = (questionNumber) => {
     if (questionNumber >= 0 && questionNumber < questions.length) {

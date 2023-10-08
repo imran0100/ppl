@@ -134,6 +134,15 @@ li.answerColorFalse {
   justify-content: center;
   gap: 1rem;
 }
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-size: 1.8rem;
+  background: linear-gradient(134deg, #c8cfff 0%, #ffffff 87%);
+  padding: 3rem;
+}
 #filter {
   padding: 0.5rem;
   border-radius: 9px;
