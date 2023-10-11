@@ -35,6 +35,7 @@ function Notification() {
     const day = date.getDate().toString().padStart(2, "0");
     return `${day}/${month}/${year}`;
   }
+  let mas = notifications.slice(0, 10).reverse();
   return (
     <div>
       <div id="container-nav" className={`navbar ${isOpen ? "open" : ""}`}>
@@ -79,7 +80,7 @@ function Notification() {
         </nav>
       </div>
       <div className="notific">
-        {notifications.map((notification) => (
+        {mas.map((notification) => (
           <div key={notification.id}>
             <span> {convertToDDMMYY(notification.updatedAt)}</span>&nbsp;
             {notification.description}
