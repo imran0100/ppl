@@ -109,7 +109,7 @@ const Video = () => {
         muted
         playsInline // For iOS to prevent fullscreen playback
       >
-        <source src="/pexels_videos_2658998 (1080p).mp4" type="video/mp4" />
+        <source src="/pexels_videos_2658998 (1080p).webm" type="video/webm" />
         {/* Add additional sources for other video formats if needed */}
       </video>
       {/* Add other content, such as your main content */}

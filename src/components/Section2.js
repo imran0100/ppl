@@ -34,7 +34,7 @@
 
 // export default Section2;
 import React, { useState, useEffect } from "react";
-import image from "../logo/20230712_231252 (1) (1).png";
+import image from "../logo/20230712_231252 (1) (1).webp";
 import "./Section2.css";
 import axios from "axios";
 // Import the animation styles
