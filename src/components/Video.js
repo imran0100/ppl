@@ -29,8 +29,8 @@ const Video = () => {
         const response = await axios.get(
           "https://server.theultimateppl.com/api/v1/get_allbasic_price"
         );
-        console.log(response.data.data, "dahsihdia");
-        setData(response.data.data);
+        console.log(response.data.data[1], "dahsihdia");
+        setData([response.data.data[0]]);
       } catch (error) {
         if (error.response && error.response.status === 404) {
           // Handle 404 error here
@@ -100,7 +100,7 @@ const Video = () => {
       console.log("fkasfklasas");
     } else navigate("/login");
   };
-
+console.log(data,"tesst")
   return (
     <div className="video-background">
       <video
@@ -117,29 +117,32 @@ const Video = () => {
         <div className="main">
           <div className="container">
             <div className={`grid ${shouldAnimate ? "active" : ""}`}>
-              {data.map((pricingItem, index) => (
-                <div className="card" key={index}>
-                  <h2 className="card_title">{pricingItem.title}</h2>
+              {data.map((item, index) => (
+                <div className="card" >
+                  <h2 className="card_title">{item.title}</h2>
                   <p className="pricing">
                     <span style={{ fontSize: "3rem" }}>£</span>
-                    {pricingItem.pricing}
+                    {item.pricing}
                     <span className="small">/per month</span>
                   </p>
-                  <p>{pricingItem.discount}</p>
+                  <p>{item.discount&&null}</p>
                   <hr />
                   <ul className="features">
-                    {pricingItem.feature.map((feature, index) => (
+                    {item.feature.map((feature, index) => (
                       <li key={index}>{feature}</li>
                     ))}
                   </ul>
                   <a
                     className="cta_btn"
-                    onClick={() => checkout(Number(pricingItem.pricing))}
+                    onClick={() => checkout(Number(item.pricing))}
                   >
                     Buy Now
                   </a>
                 </div>
-              ))}
+                
+  ))}
+            <div className="newCart"></div>
+ 
             </div>
           </div>
         </div>

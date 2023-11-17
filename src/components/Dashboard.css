@@ -4,7 +4,14 @@
 
   padding: 2rem 2rem 0 2rem;
 }
-
+.nation{
+  display: flex;
+    font-size: 1.5rem;
+    align-items: center;
+    gap: 0.5rem;
+    margin-right: 0.3rem;
+    color: #5d00ba;
+}
 .dashboard-section {
   display: flex;
   justify-content: space-between;

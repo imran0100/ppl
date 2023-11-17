@@ -107,7 +107,7 @@
 
 .grid {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 2fr !important;
   gap: 2%;
   padding: 4% 8%;
 }
@@ -226,7 +226,7 @@ a.cta_btn:hover {
 
 @media only screen and (max-width: 425px) {
   .grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr !important;
     gap: 2%;
     padding-bottom: 25%;
   }

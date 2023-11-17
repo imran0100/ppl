@@ -127,6 +127,7 @@ import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
 import logo from "../logo/WhatsApp Image 2023-07-12 at 9.58.35 AM.png";
 import { FaUserAlt } from "react-icons/fa";
+import { FaEarthAmericas } from "react-icons/fa6";
 const Dashboard = () => {
   // const subje = [
   //   {
@@ -198,11 +199,14 @@ const Dashboard = () => {
     localStorage.removeItem("user_322");
     navigate("/");
   };
+
   const handleTest = (id) => {
     navigate(`/test/${id}`);
   };
   let user = JSON.parse(localStorage.getItem("user_322"));
   // console.log(user.first_name);
+  console.log(user.question_type
+    ,"fiajifjasiojaifjias")
   return (
     <>
       {" "}
@@ -236,6 +240,8 @@ const Dashboard = () => {
               <FaUserAlt size={25} />
             </div>
             <h3>{user.first_name}</h3>
+            <div className="nation"><FaEarthAmericas size={25}/>{user.question_type
+}</div>
             {/* <h3>Imran</h3> */}
 
             <div className="dashboard-item">

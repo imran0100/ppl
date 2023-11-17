@@ -26,11 +26,11 @@ function Footer() {
       <div className={`footer-anime ${shouldAnimate ? "active" : ""}`}>
         {" "}
         <img src={logo} alt="logo" />
-        <div style={{ display: "flex", gap: ".3rem" }}>
+        {/* <div style={{ display: "flex", gap: ".3rem" }}>
           <FaFacebook className="facebook" size={30} />
           <FaTwitter className="twitter" size={30} />
           <FaInstagram className="instagram" size={30} />
-        </div>
+        </div> */}
         <div className="fo-design">
           Website design and developed by&nbsp;
           <a href="http://www.webexperts-studioz.com/">Web Experts Studioz</a>

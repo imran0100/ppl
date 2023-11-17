@@ -193,7 +193,7 @@ function App() {
           "https://server.theultimateppl.com/api/v1/get_allbasic_price"
         );
         console.log(response.data.data, "dahsihdia");
-        setData(response.data.data);
+        setData([response.data.data[0]]);
       } catch (error) {
         if (error.response && error.response.status === 404) {
           // Handle 404 error here

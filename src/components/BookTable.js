@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./BookTable.css";
 import axios from "axios";
+import { FaCheckCircle } from "react-icons/fa";
 function BookTable() {
   const [shouldAnimate, setShouldAnimate] = useState(false);
   const [books, setBooks] = useState([]);
@@ -41,17 +42,18 @@ function BookTable() {
         <table>
           <thead>
             <tr>
-              <th>Subject</th>
-              <th style={{ textAlign: "center" }}>EASA 2016</th>
-              <th style={{ textAlign: "center" }}>EASA 2021</th>
+              <th>Subjects</th>
+              <th style={{ textAlign: "center" }}></th>
+              <th style={{ textAlign: "center" }}></th>
             </tr>
           </thead>
           <tbody>
             {books.map((book, index) => (
               <tr key={index}>
                 <td>{book.sub_name}</td>
-                <td style={{ textAlign: "center" }}>{book.EASA_2016}</td>
-                <td style={{ textAlign: "center" }}>{book.EASA_2021}</td>
+                <td style={{ textAlign: "center" }}></td>
+                <td style={{ textAlign: "center", color:"#1a237e"}}> <FaCheckCircle  /></td>
+         
               </tr>
             ))}
           </tbody>
