@@ -9,7 +9,7 @@
   width: 100%;
   height: 100%;/* Set the height as needed */
 
-  background-image: url('https://eu-central.storage.cloudconvert.com/tasks/42763fe8-77b4-4855-813e-34c3bef0c223/Success.webp?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=cloudconvert-production%2F20231116%2Ffra%2Fs3%2Faws4_request&X-Amz-Date=20231116T171707Z&X-Amz-Expires=86400&X-Amz-Signature=d9209d5d00e66c9bd365f51fb06c644a86f98202390f208a73e9f850505a816e&X-Amz-SignedHeaders=host&response-content-disposition=inline%3B%20filename%3D%22Success.webp%22&response-content-type=image%2Fwebp&x-id=GetObject');
+  background-image: url('/src/logo/Success.webp');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
